@@ -19,7 +19,6 @@
 #import "RHLogView.h"
 #import "Preferences.h"
 #import "RHFileHistory.h"
-#import "SDCardManager.h"
 #import "EnableToollbarItem.h"
 #import "LogSplitViewDelegate.h"
 #import "HorizontalSpliViewDelegate.h"
@@ -57,7 +56,6 @@
     RHFileHistory *stlHistory;
     RHFileHistory *gcodeHistory;
     EEPROMController *eepromController;
-    SDCardManager *sdcardManager;
     Preferences *preferences;
     IBOutlet NSTextView *logViewText;
     IBOutlet NSToolbarItem *connectButton;

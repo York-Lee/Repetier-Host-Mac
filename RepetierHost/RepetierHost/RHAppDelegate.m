@@ -70,7 +70,7 @@
         [PrinterConfiguration initPrinter];
         conf3d = [ThreeDConfig new];*/
         eepromController = nil;
-        sdcardManager = nil;
+        //sdcardManager = nil;
         codePreview = [ThreeDContainer new];
         stlView = [ThreeDContainer new];
         printPreview = [ThreeDContainer new];
@@ -402,12 +402,12 @@
     }];
 }
 
-- (IBAction)sdCardAction:(id)sender {
+/*- (IBAction)sdCardAction:(id)sender {
     if(!sdcardManager) {
         sdcardManager = [[SDCardManager alloc] init];
     }
     [sdcardManager.window makeKeyAndOrderFront:nil];
-}
+}*/
 
 - (IBAction)showFilamentAction:(NSToolbarItem *)sender {
     conf3d->disableFilamentVisualization = !conf3d->disableFilamentVisualization;

@@ -39,8 +39,6 @@
 		FD283A8814E6C43A00597203 /* HorizontalSpliViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD283A8714E6C43A00597203 /* HorizontalSpliViewDelegate.m */; };
 		FD283A8B14E97ED100597203 /* preferences.png in Resources */ = {isa = PBXBuildFile; fileRef = FD283A8914E97ED100597203 /* preferences.png */; };
 		FD283A8C14E97ED100597203 /* printersettings.png in Resources */ = {isa = PBXBuildFile; fileRef = FD283A8A14E97ED100597203 /* printersettings.png */; };
-		FD283A8E14EAB8CA00597203 /* SDCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD283A8D14EAB8CA00597203 /* SDCard.xib */; };
-		FD283A9114EABBBA00597203 /* SDCardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD283A9014EABBB900597203 /* SDCardManager.m */; };
 		FD283A9414EAC4ED00597203 /* FlippedNSView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD283A9314EAC4ED00597203 /* FlippedNSView.m */; };
 		FD283A9614EACEFC00597203 /* emergencystop.png in Resources */ = {isa = PBXBuildFile; fileRef = FD283A9514EACEFC00597203 /* emergencystop.png */; };
 		FD283A9814EFAFD000597203 /* pauseiconbig.png in Resources */ = {isa = PBXBuildFile; fileRef = FD283A9714EFAFD000597203 /* pauseiconbig.png */; };
@@ -206,9 +204,6 @@
 		FD283A8714E6C43A00597203 /* HorizontalSpliViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalSpliViewDelegate.m; sourceTree = "<group>"; };
 		FD283A8914E97ED100597203 /* preferences.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferences.png; sourceTree = "<group>"; };
 		FD283A8A14E97ED100597203 /* printersettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = printersettings.png; sourceTree = "<group>"; };
-		FD283A8D14EAB8CA00597203 /* SDCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCard.xib; sourceTree = "<group>"; };
-		FD283A8F14EABBB900597203 /* SDCardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCardManager.h; sourceTree = "<group>"; };
-		FD283A9014EABBB900597203 /* SDCardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCardManager.m; sourceTree = "<group>"; };
 		FD283A9214EAC4ED00597203 /* FlippedNSView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlippedNSView.h; sourceTree = "<group>"; };
 		FD283A9314EAC4ED00597203 /* FlippedNSView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlippedNSView.m; sourceTree = "<group>"; };
 		FD283A9514EACEFC00597203 /* emergencystop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emergencystop.png; sourceTree = "<group>"; };
@@ -539,7 +534,6 @@
 				FD6E2F7114C243AF00F57498 /* EEPROM.xib */,
 				FD74DBC714D1C83F00422BFE /* Preferences.xib */,
 				FD0AE1D414DB446A002356B8 /* Slic3rSettings.xib */,
-				FD283A8D14EAB8CA00597203 /* SDCard.xib */,
 				FD9447B715D8230700AFE7F1 /* Slicer.xib */,
 			);
 			path = windows;
@@ -597,8 +591,6 @@
 				FD74DBC914D1CD7300422BFE /* Preferences.h */,
 				FD74DBCA14D1CD7300422BFE /* Preferences.m */,
 				FD6E2F7414C2446700F57498 /* EEPROMController.h */,
-				FD283A8F14EABBB900597203 /* SDCardManager.h */,
-				FD283A9014EABBB900597203 /* SDCardManager.m */,
 				FD6E2F7514C2446700F57498 /* EEPROMController.m */,
 				FDB2C67514926E6500276479 /* RHTempertuareController.m */,
 				FD13BF7A14C1756D0007E33D /* STLComposer.h */,
@@ -840,7 +832,6 @@
 				FD283A8514E6B61900597203 /* rotateicon.png in Resources */,
 				FD283A8B14E97ED100597203 /* preferences.png in Resources */,
 				FD283A8C14E97ED100597203 /* printersettings.png in Resources */,
-				FD283A8E14EAB8CA00597203 /* SDCard.xib in Resources */,
 				FD283A9614EACEFC00597203 /* emergencystop.png in Resources */,
 				FD283A9814EFAFD000597203 /* pauseiconbig.png in Resources */,
 				FD01F4A815BB0AD900754A5F /* autoposition.png in Resources */,
@@ -917,7 +908,6 @@
 				FD28664214DE7A130081750D /* TemperatureHistory.m in Sources */,
 				FD28664514DE8CFB0081750D /* TemperatureView.m in Sources */,
 				FD283A8814E6C43A00597203 /* HorizontalSpliViewDelegate.m in Sources */,
-				FD283A9114EABBBA00597203 /* SDCardManager.m in Sources */,
 				FD283A9414EAC4ED00597203 /* FlippedNSView.m in Sources */,
 				FD283A9B14EFB10D00597203 /* HistoryTextField.m in Sources */,
 				FD22AFC41501822D009BE821 /* GCodeShort.m in Sources */,

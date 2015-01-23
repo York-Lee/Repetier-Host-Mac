@@ -24,7 +24,6 @@
 #import "EEPROMParameter.h"
 #import "ThreadedNotification.h"
 #import "TemperatureHistory.h"
-#import "SDCardManager.h"
 #import "RHSound.h"
 #import "../controller/GCodeEditorController.h"
 #import "../controller/GCodeView.h"
@@ -826,8 +825,8 @@
     {
         [responseDelegate responseReceived:res];
     }
-    if(app->sdcardManager!=nil)
-        [app->sdcardManager analyze:res];
+    //if(app->sdcardManager!=nil)
+    //    [app->sdcardManager analyze:res];
     NSString *h = [self extract:res identifier:@"FIRMWARE_NAME:"];
     if (h != nil)
     {
