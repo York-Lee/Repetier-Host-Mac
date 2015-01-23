@@ -34,7 +34,7 @@
 @class Slicer;
 @class Slic3rConfig;
 @class STLComposer;
-@class RHTempertuareController;
+//@class RHTempertuareController;
 @class RHManualControl;
 @class RHSlicer;
 
@@ -63,7 +63,7 @@
     IBOutlet NSSplitView *logSplitView;
     IBOutlet NSView *topLogView;
     IBOutlet NSTextField *printStatusLabel;
-    IBOutlet NSTextField *printTempLabel;
+    //IBOutlet NSTextField *printTempLabel;
     IBOutlet NSProgressIndicator *printProgress;
     IBOutlet NSTextField *printFrames;
     IBOutlet NSTextField *gcodeText;
@@ -81,7 +81,7 @@
     IBOutlet NSToolbarItem *showFilamentButton;
     IBOutlet NSToolbarItem *showTravelButton;
     IBOutlet NSToolbarItem *killJobButton;
-    IBOutlet NSToolbarItem *sdcardButton;
+    //IBOutlet NSToolbarItem *sdcardButton;
     IBOutlet LogSplitViewDelegate *logSplitDelegate;
     IBOutlet NSToolbar *toolbar;
     NSOpenPanel* openPanel;
@@ -96,9 +96,9 @@
     IBOutlet NSMenu *openRecentGCodeMenu;
     IBOutlet STLComposer *composer;
     IBOutlet NSTabViewItem *threedViewTabItem;
-    IBOutlet NSTabViewItem *temperatureTabItem;
+    //IBOutlet NSTabViewItem *temperatureTabItem;
     IBOutlet NSTextView *firstStepsText;
-    IBOutlet RHTempertuareController *temperatureController;
+    //IBOutlet RHTempertuareController *temperatureController;
     IBOutlet NSMenu *mainMenu;
     IBOutlet NSMenuItem *slicerMenu;
     IBOutlet EnableToollbarItem *emergencyButton;
@@ -129,7 +129,7 @@
 - (IBAction)openPrinterSettings:(id)sender;
 -(void)printerInfoReceived:(NSNotification*)notification;
 - (void)connectionOpened:(NSNotification *)notification;
--(void)temperatureRead:(NSNotification*)notification;
+//-(void)temperatureRead:(NSNotification*)notification;
 //@property (assign) IBOutlet NSScrollView *sendGCodeAction;
 - (IBAction)toggleLog:(id)sender;
 - (IBAction)toggleETAAction:(id)sender;

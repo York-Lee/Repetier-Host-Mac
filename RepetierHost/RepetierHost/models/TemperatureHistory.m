@@ -169,14 +169,14 @@
                        context:(void *)context
 {
     [self setupColor];
-    [app->temperatureController refresh];
+    //[app->temperatureController refresh];
 }
 -(void)initMenu {
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"Past 60 minutes" action:@selector(selectPeriod:) keyEquivalent:@""];
     [item setTag:0];
-    [item setTarget:app->temperatureController];
+    //[item setTarget:app->temperatureController];
     [lists addLast:history];
-    [app->temperatureController->timeperiodMenu addItem:item];
+    //[app->temperatureController->timeperiodMenu addItem:item];
     [item release];
 }
 -(void)addNotify:(NSNotification*)event {
@@ -224,17 +224,17 @@
         [dateFormatter setDateFormat:formatString];
         NSString *time = [dateFormatter stringFromDate:[NSDate date]];                                                         
         NSMenuItem * item = [[NSMenuItem alloc] initWithTitle:time action:@selector(selectPeriod:) keyEquivalent:@""];
-        [item setTarget:app->temperatureController];
+        //[item setTarget:app->temperatureController];
         [item setTag:lists->count];
         hourHistory = [TemperatureList new];
         hourHistory->minTime = lhour*3600;
         hourHistory->maxTime = hourHistory->minTime+3600;
         [lists addLast:hourHistory];
-        [app->temperatureController->timeperiodMenu addItem:item];
+        //[app->temperatureController->timeperiodMenu addItem:item];
         [dateFormatter release];
         [item release];
     }
     [hourHistory->entries addLast:ent];
-    [app->temperatureController refresh];
+    //[app->temperatureController refresh];
 }
 @end

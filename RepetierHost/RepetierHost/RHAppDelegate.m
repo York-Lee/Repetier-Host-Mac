@@ -209,11 +209,11 @@
     if(connection->connected) {
         [runJobButton setTag:YES];
         [killJobButton setTag:[connection->job hasData]];
-        [sdcardButton setTag:YES];
+        //[sdcardButton setTag:YES];
     } else {
         [runJobButton setTag:NO];
         [killJobButton setTag:NO];
-        [sdcardButton setTag:NO];
+        //[sdcardButton setTag:NO];
     }
     if(connection->job->mode!=1) {
         [runJobButton setLabel:@"Run"];
@@ -294,7 +294,7 @@
         else
             [tr appendString:@"°C/Off"];
     }
-    [printTempLabel setStringValue:tr];
+    //[printTempLabel setStringValue:tr];
 }
 
 -(void)jobChanged:(NSNotification*)notification {
@@ -303,7 +303,7 @@
 - (void)connectionOpened:(NSNotification *)notification {
     [connectButton setLabel:@"Disconnect"];
     [connectButton setImage:disconnectedImage];
-    [printTempLabel setStringValue:@"Waiting for temperature"];
+    //[printTempLabel setStringValue:@"Waiting for temperature"];
     [eepromMenuItem setEnabled:YES];
     [emergencyButton setTag:YES];
     [sendScript1Menu setEnabled:YES];
@@ -320,7 +320,7 @@
 - (void)connectionClosed:(NSNotification *)notification {
     [connectButton setLabel:@"  Connect  "];
     [connectButton setImage:connectedImage];    
-    [printTempLabel setStringValue:@"Disconnected"];    
+    //[printTempLabel setStringValue:@"Disconnected"];
     [eepromMenuItem setEnabled:NO];
     [emergencyButton setTag:NO];
     [sendScript1Menu setEnabled:NO];
