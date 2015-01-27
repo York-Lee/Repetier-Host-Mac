@@ -189,7 +189,7 @@ NSDateFormatter *logDateFormatter = nil;
         [app->logView addLine:list.peekLast];
 }
 -(void)refillView {
-    [app->logView->linesLock lock];
+    /*[app->logView->linesLock lock];
     NSMutableArray *a = app->logView->lines;
     [a removeAllObjects];
     [listLock lock];
@@ -203,7 +203,7 @@ NSDateFormatter *logDateFormatter = nil;
     }
     [app->logView->linesLock unlock];
     [app->logView scrollBottom];
-    [app->logView updateBox];
+    [app->logView updateBox];*/
 }
 - (IBAction)copyAction:(NSButton *)sender {
     [app->logView copy:nil];

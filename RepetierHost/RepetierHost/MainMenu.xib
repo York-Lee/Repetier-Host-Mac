@@ -71,19 +71,14 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Open Recent G-Code File" id="1403">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Open Recent G-Code File" id="1404">
-                                    <items>
-                                        <menuItem title="Item" id="1405">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem title="Show Workdir in Finder" keyEquivalent="f" id="1412">
+                            <menuItem title="Open Workdir in Finder" keyEquivalent="f" id="1412">
                                 <connections>
                                     <action selector="showWorkdir:" target="839" id="1413"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Load G-Code File" keyEquivalent="g" id="1403">
+                                <connections>
+                                    <action selector="loadGCodeAction:" target="839" id="dNX-RI-bjZ"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="1213"/>
@@ -95,113 +90,107 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Edit" id="1129">
+                <menuItem title="View" id="379-xm-DCl">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Edit" id="1130">
+                    <menu key="submenu" title="View" id="Djx-10-9V9">
                         <items>
-                            <menuItem title="Undo" keyEquivalent="z" id="1131">
-                                <connections>
-                                    <action selector="undo:" target="-1" id="1197"/>
-                                </connections>
+                            <menuItem title="Isometric View" id="9W3-XC-fj7">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title="Redo" keyEquivalent="Z" id="1132">
-                                <connections>
-                                    <action selector="redo:" target="-1" id="1191"/>
-                                </connections>
+                            <menuItem title="Front View" id="f5a-By-jRN">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="1133"/>
-                            <menuItem title="Cut" keyEquivalent="x" id="1134">
-                                <connections>
-                                    <action selector="cut:" target="-1" id="1177"/>
-                                </connections>
+                            <menuItem title="Left View" id="laH-0o-2tW">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title="Copy" keyEquivalent="c" id="1135">
-                                <connections>
-                                    <action selector="copy:" target="-1" id="1176"/>
-                                </connections>
+                            <menuItem title="Right View" id="0OS-yU-UL9">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title="Paste" keyEquivalent="v" id="1136">
-                                <connections>
-                                    <action selector="paste:" target="-1" id="1182"/>
-                                </connections>
+                            <menuItem title="Back View" id="dxM-9M-AGe">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title="Delete" id="1138">
+                            <menuItem title="Top View" id="rNG-LH-3Ks">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Bottom View" id="54l-P8-ouY">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="Ppa-Af-eTT"/>
+                            <menuItem title="Fit Printer" id="Pxl-dM-RQd">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Fit Object" id="x5P-3u-2n6">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="FA3-O8-Edm"/>
+                            <menuItem title="Show Edges" id="b95-Ow-nQf">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Show Faces" id="Zf5-F1-tcN">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Show Compass" id="Yjx-OO-RyD">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Toggle Printer ID View" id="KXI-co-fRB">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Setting" id="GO4-yx-Tdz">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Setting" id="59Y-jn-ErF">
+                        <items>
+                            <menuItem title="Language" id="5Rs-TA-jHm">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Language" id="JzP-fu-3ko">
+                                    <items>
+                                        <menuItem title="English" id="wB9-la-xeH">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="中文" id="oVz-FM-g9P">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Printer Setting" id="vOS-3C-lJ8">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="delete:" target="-1" id="1192"/>
+                                    <action selector="openPrinterSettings:" target="839" id="9fD-yZ-vVJ"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Select All" keyEquivalent="a" id="1139">
-                                <connections>
-                                    <action selector="selectAll:" target="-1" id="1195"/>
-                                </connections>
+                            <menuItem title="Firmare EEPROM Configuration" id="gzj-Fe-10L">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="Printer" id="876">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Printer" autoenablesItems="NO" id="988">
-                        <items>
-                            <menuItem title="Printer Settings" keyEquivalent="p" id="991">
-                                <connections>
-                                    <action selector="openPrinterSettings:" target="839" id="1020"/>
-                                </connections>
+                            <menuItem title="3D View Setting" id="6LG-RC-8Dy">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title="EEPROM Settings" enabled="NO" keyEquivalent="e" id="989">
-                                <connections>
-                                    <action selector="showEEPROM:" target="839" id="1019"/>
-                                </connections>
+                            <menuItem title="XBuilder General Configuration" id="86x-ce-Qc2">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="1419"/>
-                            <menuItem title="Send Script 1" enabled="NO" keyEquivalent="1" id="1420">
-                                <connections>
-                                    <action selector="sendScript1Action:" target="839" id="1430"/>
-                                </connections>
+                            <menuItem title="Sound Configuration" id="kuy-ok-9y0">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title="Send Script 2" enabled="NO" keyEquivalent="2" id="1421">
-                                <connections>
-                                    <action selector="sendScript2Action:" target="839" id="1431"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Send Script 3" enabled="NO" keyEquivalent="3" id="1422">
-                                <connections>
-                                    <action selector="sendScript3Action:" target="839" id="1433"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Send Script 4" enabled="NO" keyEquivalent="4" id="1423">
-                                <connections>
-                                    <action selector="sendScript4Action:" target="839" id="1434"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Send Script 5" enabled="NO" keyEquivalent="5" id="1424">
-                                <connections>
-                                    <action selector="sendScript5Action:" target="839" id="1435"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="Window" id="883">
-                    <menu key="submenu" title="Window" systemMenu="window" id="884">
-                        <items>
-                            <menuItem title="Minimize" keyEquivalent="m" id="885">
-                                <connections>
-                                    <action selector="miniaturize:" target="367" id="1443"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Zoom" id="886">
-                                <connections>
-                                    <action selector="performZoom:" target="367" id="1445"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="888">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Bring All to Front" id="887">
-                                <connections>
-                                    <action selector="orderFront:" target="367" id="1444"/>
-                                </connections>
+                            <menuItem title="Unit of Imported Model" id="qt0-be-FF6">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Unit of Imported Model" id="gDX-R0-b3n">
+                                    <items>
+                                        <menuItem title="Objects are in millimeter" id="Po8-IQ-dpp">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Objects are in inch" id="9vV-In-1tC">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Objects are in foot" id="MS6-VX-iCQ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Objects are in meter" id="PcP-ta-Yav">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                         </items>
                     </menu>
@@ -285,28 +274,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <customView id="824">
-                                <rect key="frame" x="0.0" y="0.0" width="783" height="295"/>
+                                <rect key="frame" x="0.0" y="0.0" width="783" height="442"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <splitView autosaveName="" dividerStyle="thin" vertical="YES" id="826">
-                                        <rect key="frame" x="0.0" y="0.0" width="772" height="295"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="772" height="442"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <customView id="827">
-                                                <rect key="frame" x="0.0" y="0.0" width="402" height="295"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="402" height="442"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tabView initialItem="830" id="829">
-                                                        <rect key="frame" x="0.0" y="0.0" width="402" height="295"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="402" height="442"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <tabViewItems>
                                                             <tabViewItem label="3D View" identifier="1" id="830">
                                                                 <view key="view" id="833">
-                                                                    <rect key="frame" x="10" y="33" width="382" height="249"/>
+                                                                    <rect key="frame" x="10" y="33" width="382" height="396"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <customView id="834" customClass="ThreeDView">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="382" height="249"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="382" height="396"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         </customView>
                                                                     </subviews>
@@ -317,20 +306,20 @@
                                                 </subviews>
                                             </customView>
                                             <customView id="828">
-                                                <rect key="frame" x="403" y="0.0" width="369" height="295"/>
+                                                <rect key="frame" x="403" y="0.0" width="369" height="442"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tabView controlSize="small" initialItem="843" id="841">
-                                                        <rect key="frame" x="0.0" y="0.0" width="369" height="295"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="369" height="442"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <tabViewItems>
                                                             <tabViewItem label="Object Placement" identifier="1" id="843">
                                                                 <view key="view" id="847">
-                                                                    <rect key="frame" x="10" y="25" width="349" height="257"/>
+                                                                    <rect key="frame" x="10" y="25" width="349" height="404"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <customView id="848" customClass="STLComposer">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="349" height="257"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="349" height="404"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         </customView>
                                                                     </subviews>
@@ -351,7 +340,7 @@
                                                             <tabViewItem label="G-Code" identifier="2" id="844">
                                                                 <view key="view" id="845">
                                                                     <rect key="frame" x="10" y="25" width="349" height="257"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <customView id="846" customClass="GCodeEditorController">
                                                                             <rect key="frame" x="0.0" y="0.0" width="349" height="257"/>
@@ -366,14 +355,14 @@
                                                             <tabViewItem label="Print Panel" identifier="" id="842">
                                                                 <view key="view" id="849">
                                                                     <rect key="frame" x="10" y="25" width="349" height="257"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" id="850">
                                                                             <rect key="frame" x="0.0" y="0.0" width="349" height="257"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <clipView key="contentView" id="wd5-Os-luY">
                                                                                 <rect key="frame" x="1" y="1" width="347" height="255"/>
-                                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <view autoresizesSubviews="NO" id="853" customClass="FlippedNSView">
                                                                                         <rect key="frame" x="0.0" y="-133" width="489" height="576"/>
@@ -394,7 +383,7 @@
                                                                                 <rect key="frame" x="1" y="240" width="347" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                             </scroller>
-                                                                            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.58566978193146424" horizontal="NO" id="851">
+                                                                            <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.99376947040498442" horizontal="NO" id="851">
                                                                                 <rect key="frame" x="332" y="1" width="16" height="255"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                             </scroller>
@@ -420,131 +409,8 @@
                                     </splitView>
                                 </subviews>
                             </customView>
-                            <customView id="825">
-                                <rect key="frame" x="0.0" y="296" width="783" height="146"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <subviews>
-                                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" id="857">
-                                        <rect key="frame" x="0.0" y="0.0" width="783" height="120"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <clipView key="contentView" id="JP6-9u-9iQ">
-                                            <rect key="frame" x="1" y="1" width="766" height="103"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <customView id="858" customClass="RHLogView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="796" height="1474"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
-                                                </customView>
-                                            </subviews>
-                                        </clipView>
-                                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="860">
-                                            <rect key="frame" x="1" y="104" width="766" height="15"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="859">
-                                            <rect key="frame" x="767" y="1" width="15" height="103"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                    </scrollView>
-                                    <button verticalHuggingPriority="750" id="1026">
-                                        <rect key="frame" x="20" y="122" width="85" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="recessed" title="Send" bezelStyle="recessed" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="1027">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                            <font key="font" metaFont="smallSystem"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="filterChangedAction:" target="1042" id="1060"/>
-                                            <binding destination="1085" name="value" keyPath="values.log.sendEnabled" id="1087"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" id="1028">
-                                        <rect key="frame" x="578" y="122" width="85" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundRect" title="Copy" bezelStyle="roundedRect" imagePosition="left" alignment="center" state="on" borderStyle="border" inset="2" id="1029">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="smallSystem"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="copyAction:" target="1042" id="1051"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" id="1030">
-                                        <rect key="frame" x="671" y="122" width="83" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundRect" title="Clear Log" bezelStyle="roundedRect" image="2AEF2D3B-1050-44FD-BF8E-52E16C5973DA" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" inset="2" id="1031">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="smallSystem"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="clearLogAction:" target="1042" id="1081"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" id="1032">
-                                        <rect key="frame" x="113" y="122" width="85" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="recessed" title="Info" bezelStyle="recessed" imagePosition="left" alignment="center" state="on" borderStyle="border" inset="2" id="1033">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                            <font key="font" metaFont="smallSystem"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="filterChangedAction:" target="1042" id="1059"/>
-                                            <binding destination="1085" name="value" keyPath="values.log.infoEnabled" id="1089"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" id="1034">
-                                        <rect key="frame" x="206" y="122" width="85" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="recessed" title="Warnings" bezelStyle="recessed" imagePosition="left" alignment="center" state="on" borderStyle="border" inset="2" id="1035">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                            <font key="font" metaFont="smallSystem"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="filterChangedAction:" target="1042" id="1058"/>
-                                            <binding destination="1085" name="value" keyPath="values.log.warningsEnabled" id="1091"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" id="1036">
-                                        <rect key="frame" x="299" y="122" width="85" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="recessed" title="Errors" bezelStyle="recessed" imagePosition="left" alignment="center" state="on" borderStyle="border" inset="2" id="1037">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                            <font key="font" metaFont="smallSystem"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="filterChangedAction:" target="1042" id="1057"/>
-                                            <binding destination="1085" name="value" keyPath="values.log.errorsEnabled" id="1092"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" id="1038">
-                                        <rect key="frame" x="392" y="122" width="85" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="recessed" title="ACK" bezelStyle="recessed" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="1039">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                            <font key="font" metaFont="smallSystem"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="filterChangedAction:" target="1042" id="1056"/>
-                                            <binding destination="1085" name="value" keyPath="values.logs.ackEnabled" id="1093"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" id="1040">
-                                        <rect key="frame" x="485" y="122" width="85" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="recessed" title="Autoscroll" bezelStyle="recessed" imagePosition="left" alignment="center" state="on" borderStyle="border" inset="2" id="1041">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                            <font key="font" metaFont="smallSystem"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="autoscrollAction:" target="1042" id="1055"/>
-                                            <binding destination="1085" name="value" keyPath="values.logs.autoscrollEnabled" id="1095"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </customView>
                         </subviews>
                         <holdingPriorities>
-                            <real value="250"/>
                             <real value="250"/>
                         </holdingPriorities>
                         <connections>
@@ -607,11 +473,6 @@
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="871"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="870"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarSeparatorItem" id="869"/>
-                    <toolbarItem implicitItemIdentifier="B6A77B65-8A60-471B-A0F9-9D0222E29245" label="Load G-Code" paletteLabel="Load G-Code" tag="-1" image="loadgcode" id="862">
-                        <connections>
-                            <action selector="loadGCodeAction:" target="839" id="1064"/>
-                        </connections>
-                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="64F0AA60-E7BE-42E2-9FBC-87F50EB01FB7" label="  Connect  " paletteLabel="Connect" tag="1" image="disconnect" id="867">
                         <connections>
                             <action selector="toolConnect:" target="839" id="1021"/>
@@ -627,31 +488,6 @@
                             <action selector="killJobAction:" target="839" id="1063"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="BC96B4C6-B940-4E08-B8C3-1440AC17CB7F" label="Toggle log" paletteLabel="Toggle log" tag="-1" image="log" id="863">
-                        <connections>
-                            <action selector="toggleLowerView:" target="837" id="1080"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="1FF37994-335F-464D-B05B-DC829330DACC" label="Show filament" paletteLabel="Show filament" tag="-1" image="preview" id="1072">
-                        <connections>
-                            <action selector="showFilamentAction:" target="839" id="1073"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="539DDC6F-A13B-45A6-90E0-3081302CFFE2" label="Show travel" paletteLabel="Show travel" tag="-1" image="preview" id="1447">
-                        <connections>
-                            <action selector="showTravelAction:" target="839" id="1451"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="A231B802-1139-4302-8608-FE3EC3E2A4A8" label="Printer settings" paletteLabel="Printer settings" tag="-1" image="printersettings" id="1328">
-                        <connections>
-                            <action selector="openPrinterSettings:" target="839" id="1331"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="E6A045F5-7912-4D85-9135-5898C5284CC8" label="Preferences" paletteLabel="Preferences" tag="-1" image="preferences" id="1329">
-                        <connections>
-                            <action selector="showPreferences:" target="839" id="1330"/>
-                        </connections>
-                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="376815C4-135C-4DFD-8990-C5BF4D6142E1" label="Emergency Stop" paletteLabel="Emergency Stop" tag="-1" image="emergencystop" id="1336" customClass="EnableToollbarItem">
                         <connections>
                             <action selector="emergencyAction:" target="839" id="1338"/>
@@ -660,17 +496,11 @@
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="867"/>
-                    <toolbarItem reference="862"/>
                     <toolbarItem reference="871"/>
                     <toolbarItem reference="866"/>
                     <toolbarItem reference="865"/>
                     <toolbarItem reference="871"/>
-                    <toolbarItem reference="863"/>
-                    <toolbarItem reference="1072"/>
-                    <toolbarItem reference="1447"/>
                     <toolbarItem reference="870"/>
-                    <toolbarItem reference="1328"/>
-                    <toolbarItem reference="1329"/>
                     <toolbarItem reference="871"/>
                     <toolbarItem reference="1336"/>
                 </defaultToolbarItems>
@@ -678,11 +508,11 @@
             <connections>
                 <outlet property="delegate" destination="839" id="1411"/>
             </connections>
+            <point key="canvasLocation" x="170.5" y="268.5"/>
         </window>
         <customObject id="836" customClass="NSFontManager"/>
         <customObject id="837" customClass="LogSplitViewDelegate">
             <connections>
-                <outlet property="lowerView" destination="825" id="1076"/>
                 <outlet property="splitView" destination="823" id="1077"/>
                 <outlet property="upperView" destination="824" id="1078"/>
             </connections>
@@ -708,7 +538,6 @@
                 <outlet property="connectButton" destination="867" id="1001"/>
                 <outlet property="creditsText" destination="1381" id="1388"/>
                 <outlet property="editorSplitterDelegate" destination="1323" id="1407"/>
-                <outlet property="eepromMenuItem" destination="989" id="1084"/>
                 <outlet property="emergencyButton" destination="1336" id="1337"/>
                 <outlet property="firmwareLabel" destination="1390" id="1392"/>
                 <outlet property="firstStepsText" destination="1246" id="1251"/>
@@ -718,16 +547,13 @@
                 <outlet property="heaterWarningPanel" destination="1455" id="1463"/>
                 <outlet property="killJobButton" destination="865" id="1075"/>
                 <outlet property="leftTabView" destination="829" id="1069"/>
-                <outlet property="logScrollView" destination="857" id="1394"/>
                 <outlet property="logSplitDelegate" destination="837" id="1079"/>
                 <outlet property="logSplitView" destination="823" id="1002"/>
                 <outlet property="logSplitterDelegate" destination="837" id="1408"/>
-                <outlet property="logView" destination="858" id="1017"/>
                 <outlet property="mainMenu" destination="29" id="1321"/>
                 <outlet property="mainWindow" destination="367" id="1083"/>
                 <outlet property="manualControl" destination="854" id="1393"/>
                 <outlet property="openGLView" destination="834" id="873"/>
-                <outlet property="openRecentGCodeMenu" destination="1404" id="1406"/>
                 <outlet property="openRecentSTLMenu" destination="1400" id="1402"/>
                 <outlet property="pausedPanel" destination="1339" id="1348"/>
                 <outlet property="pausedPanelText" destination="1344" id="1349"/>
@@ -739,13 +565,6 @@
                 <outlet property="rhslicer" destination="1416" id="1417"/>
                 <outlet property="rightTabView" destination="841" id="1068"/>
                 <outlet property="runJobButton" destination="866" id="1066"/>
-                <outlet property="sendScript1Menu" destination="1420" id="1425"/>
-                <outlet property="sendScript2Menu" destination="1421" id="1426"/>
-                <outlet property="sendScript3Menu" destination="1422" id="1427"/>
-                <outlet property="sendScript4Menu" destination="1423" id="1428"/>
-                <outlet property="sendScript5Menu" destination="1424" id="1429"/>
-                <outlet property="showFilamentButton" destination="1072" id="1074"/>
-                <outlet property="showTravelButton" destination="1447" id="1452"/>
                 <outlet property="slicer" destination="1098" id="1108"/>
                 <outlet property="slicerTab" destination="1414" id="1418"/>
                 <outlet property="threedViewTabItem" destination="830" id="1241"/>
@@ -753,18 +572,7 @@
                 <outlet property="window" destination="367" id="1018"/>
             </connections>
         </customObject>
-        <customObject id="1042" customClass="RHLogger">
-            <connections>
-                <outlet property="ackButton" destination="1038" id="1047"/>
-                <outlet property="autoscrollButton" destination="1040" id="1048"/>
-                <outlet property="clearLogButton" destination="1030" id="1050"/>
-                <outlet property="copyButton" destination="1028" id="1049"/>
-                <outlet property="errorsButton" destination="1036" id="1046"/>
-                <outlet property="infoButton" destination="1032" id="1044"/>
-                <outlet property="sendButton" destination="1026" id="1043"/>
-                <outlet property="warningsButton" destination="1034" id="1045"/>
-            </connections>
-        </customObject>
+        <customObject id="1042" customClass="RHLogger"/>
         <userDefaultsController representsSharedInstance="YES" id="1085"/>
         <customObject id="1098" customClass="Slicer"/>
         <window title="First Steps Tutorial" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="firstSteps" animationBehavior="default" id="1243">
@@ -868,7 +676,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="1370">
                             <font key="font" metaFont="system"/>
-                            <string key="title">Repetier-Host Mac (C) 2012 Repetier  Controller for RepRap like 3d printer. Supports several firmwares like Repetier-Firmware, Sprinter, Marlin, Teacup and other.</string>
+                            <string key="title">Repetier-Host Mac (C) 2012 Repetier
+
+Controller for RepRap like 3d printer. Supports several firmwares like Repetier-Firmware, Sprinter, Marlin, Teacup and other.</string>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -955,56 +765,10 @@ DQ
         </window>
     </objects>
     <resources>
-        <image name="2AEF2D3B-1050-44FD-BF8E-52E16C5973DA" width="1" height="1">
-            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
-GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
-c1dOU0NvbG9ygAKADRIgwwAAgAOAC1Z7MSwgMX3SFQoWGFpOUy5vYmplY3RzoReABIAK0hUKGh2iGxyA
-BYAGgAkQANIgCiEiXxAUTlNUSUZGUmVwcmVzZW50YXRpb26AB4AITxEGNE1NACoAAAAKAAAADgEAAAMA
-AAABAAEAAAEBAAMAAAABAAEAAAECAAMAAAACAAgACAEDAAMAAAABAAEAAAEGAAMAAAABAAEAAAERAAQA
-AAABAAAACAESAAMAAAABAAEAAAEVAAMAAAABAAIAAAEWAAMAAAABAAEAAAEXAAQAAAABAAAAAgEcAAMA
-AAABAAEAAAFSAAMAAAABAAEAAAFTAAMAAAACAAEAAYdzAAcAAAV8AAAAuAAAAAAAAAV8YXBwbAIgAABt
-bnRyR1JBWVhZWiAH0AACAA4ADAAAAABhY3NwQVBQTAAAAABub25lAAAAAAAAAAAAAAAAAAAAAAAA9tYA
-AQAAAADTLWFwcGwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVk
-ZXNjAAAAwAAAAG9kc2NtAAABMAAAA+5jcHJ0AAAFIAAAADh3dHB0AAAFWAAAABRrVFJDAAAFbAAAAA5k
-ZXNjAAAAAAAAABVHZW5lcmljIEdyYXkgUHJvZmlsZQAAAAAAAAAAAAAAFUdlbmVyaWMgR3JheSBQcm9m
-aWxlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbWx1YwAAAAAA
-AAATAAAADHB0QlIAAAAqAAAA9GZyRlUAAAAqAAABHnpoVFcAAAAQAAABSGl0SVQAAAAuAAABWG5iTk8A
-AAAsAAABhmtvS1IAAAAYAAABsmRlREUAAAA6AAABynN2U0UAAAAuAAACBHpoQ04AAAAQAAACMmphSlAA
-AAAWAAACQnB0UE8AAAA4AAACWG5sTkwAAAAqAAACkGVzRVMAAAAoAAACumZpRkkAAAAsAAAC4nBsUEwA
-AAA2AAADDnJ1UlUAAAAmAAADRGFyRUcAAAAoAAADamVuVVMAAAAoAAADkmRhREsAAAA0AAADugBQAGUA
-cgBmAGkAbAAgAEMAaQBuAHoAYQAgAEcAZQBuAOkAcgBpAGMAbwBQAHIAbwBmAGkAbAAgAGcA6QBuAOkA
-cgBpAHEAdQBlACAAZwByAGkAc5AadShwcJaOgnJfaWPPj/AAUAByAG8AZgBpAGwAbwAgAGcAcgBpAGcA
-aQBvACAAZwBlAG4AZQByAGkAYwBvAEcAZQBuAGUAcgBpAHMAawAgAGcAcgDlAHQAbwBuAGUAcAByAG8A
-ZgBpAGzHfLwYACAARwByAGEAeQAg1QS4XNMMx3wAQQBsAGwAZwBlAG0AZQBpAG4AZQBzACAARwByAGEA
-dQBzAHQAdQBmAGUAbgAtAFAAcgBvAGYAaQBsAEcAZQBuAGUAcgBpAHMAawAgAGcAcgDlAHMAawBhAGwA
-ZQBwAHIAbwBmAGkAbGZukBpwcF6mY8+P8GWHTvZOAIIsMLAw7DCkMNcw7TDVMKEwpDDrAFAAZQByAGYA
-aQBsACAAZwBlAG4A6QByAGkAYwBvACAAZABlACAAYwBpAG4AegBlAG4AdABvAHMAQQBsAGcAZQBtAGUA
-ZQBuACAAZwByAGkAagBzAHAAcgBvAGYAaQBlAGwAUABlAHIAZgBpAGwAIABnAHIAaQBzACAAZwBlAG4A
-6QByAGkAYwBvAFkAbABlAGkAbgBlAG4AIABoAGEAcgBtAGEAYQBwAHIAbwBmAGkAaQBsAGkAVQBuAGkA
-dwBlAHIAcwBhAGwAbgB5ACAAcAByAG8AZgBpAGwAIABzAHoAYQByAG8BWwBjAGkEHgQxBEkEOAQ5ACAE
-QQQ1BEAESwQ5ACAEPwRABD4ERAQ4BDsETAZFBkQGQQAgBioGOQYxBkoGQQAgAEcAcgBhAHkAIAYnBkQG
-OQYnBkUARwBlAG4AZQByAGkAYwAgAEcAcgBhAHkAIABQAHIAbwBmAGkAbABlAEcAZQBuAGUAcgBlAGwA
-IABnAHIA5QB0AG8AbgBlAGIAZQBzAGsAcgBpAHYAZQBsAHMAZQAAdGV4dAAAAABDb3B5cmlnaHQgMjAw
-NyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLgBYWVogAAAAAAAA81EAAQAAAAEWzGN1cnYA
-AAAAAAAAAQHNAADSJSYnKFokY2xhc3NuYW1lWCRjbGFzc2VzXxAQTlNCaXRtYXBJbWFnZVJlcKMpKitf
-EBBOU0JpdG1hcEltYWdlUmVwWk5TSW1hZ2VSZXBYTlNPYmplY3TSJSYtLldOU0FycmF5oi0r0iUmMDFe
-TlNNdXRhYmxlQXJyYXmjMC0r0zM0CjU2N1dOU1doaXRlXE5TQ29sb3JTcGFjZUQwIDAAEAOADNIlJjk6
-V05TQ29sb3KiOSvSJSY8PVdOU0ltYWdlojwrXxAPTlNLZXllZEFyY2hpdmVy0UBBVHJvb3SAAQAIABEA
-GgAjAC0AMgA3AEYATABXAF4AZQByAHkAgQCDAIUAigCMAI4AlQCaAKUApwCpAKsAsACzALUAtwC5ALsA
-wADXANkA2wcTBxgHIwcsBz8HQwdWB2EHagdvB3cHegd/B44HkgeZB6EHrgezB7UHtwe8B8QHxwfMB9QH
-1wfpB+wH8QAAAAAAAAIBAAAAAAAAAEIAAAAAAAAAAAAAAAAAAAfzA
-</mutableData>
-        </image>
         <image name="disconnect" width="256" height="256"/>
         <image name="emergencystop" width="256" height="256"/>
         <image name="killjob32" width="256" height="256"/>
-        <image name="loadgcode" width="256" height="256"/>
-        <image name="log" width="256" height="256"/>
         <image name="pauseiconbig" width="256" height="256"/>
-        <image name="preferences" width="256" height="256"/>
-        <image name="preview" width="256" height="256"/>
-        <image name="printersettings" width="256" height="256"/>
         <image name="repetier-logo-trans128" width="512" height="512"/>
         <image name="runjob32" width="256" height="256"/>
     </resources>
