@@ -464,22 +464,6 @@
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.repetier.com"]];
 }
 
-- (IBAction)ShowManual:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.repetier.com/documentation/repetier-host-mac/"]];
-}
-
-- (IBAction)ShowForum:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://forums.reprap.org/list.php?267"]];
-}
-
-- (IBAction)ShowSlic3rHomepage:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.slic3r.org"]];
-}
-
-- (IBAction)ShowSkeinforgeHomepage:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://fabmetheus.crsndoo.com"]];
-}
-
 - (IBAction)showWorkdir:(id)sender {
     NSString *folder = @"~/Library/Repetier/";
     folder = [folder stringByExpandingTildeInPath];
@@ -487,44 +471,6 @@
     //    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:fileURLs];
     [[NSWorkspace sharedWorkspace] openFile:folder];
 }
-
-- (IBAction)sendScript1Action:(id)sender {
-    for (GCodeShort *code in gcodeView->script1->textArray)
-    {
-        [connection injectManualCommand:code->text];
-    }
-}
-
-- (IBAction)sendScript2Action:(id)sender {
-    for (GCodeShort *code in gcodeView->script2->textArray)
-    {
-        [connection injectManualCommand:code->text];
-    }
-}
-
-- (IBAction)sendScript3Action:(id)sender {
-    for (GCodeShort *code in gcodeView->script3->textArray)
-    {
-        [connection injectManualCommand:code->text];
-    }
-}
-
-- (IBAction)sendScript4Action:(id)sender {
-    for (GCodeShort *code in gcodeView->script4->textArray)
-    {
-        [connection injectManualCommand:code->text];
-    }
-}
-
-- (IBAction)sendScript5Action:(id)sender {
-    for (GCodeShort *code in gcodeView->script5->textArray)
-    {
-        [connection injectManualCommand:code->text];
-    }
-}
-
-- (IBAction)donateAction:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.repetier.com/donate-or-support/"]];}
 
 - (IBAction)heaterRunningAbort:(id)sender {
     [heaterWarningPanel orderOut:window];

@@ -37,7 +37,7 @@
 	<key>CFBundleIconFile</key>
 	<string>repetier-logo-trans128</string>
 	<key>CFBundleIdentifier</key>
-	<string>repetier.Repetier-Host-Mac</string>
+	<string>xbuilder.XBuilder-Mac</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -45,7 +45,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.56</string>
+	<string>0.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
