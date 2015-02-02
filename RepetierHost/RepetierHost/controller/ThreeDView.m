@@ -89,6 +89,31 @@
     [glView setNeedsDisplay:YES];
 }
 
+- (IBAction)frontViewAction:(id)sender {
+    [act frontView];
+    [glView setNeedsDisplay:YES];
+}
+
+- (IBAction)bottomViewAction:(id)sender {
+    [act bottomView];
+    [glView setNeedsDisplay:YES];
+}
+
+- (IBAction)backViewAction:(id)sender {
+    [act backView];
+    [glView setNeedsDisplay:YES];
+}
+
+- (IBAction)leftViewAction:(id)sender {
+    [act leftView];
+    [glView setNeedsDisplay:YES];
+}
+
+- (IBAction)rightViewAction:(id)sender {
+    [act rightView];
+    [glView setNeedsDisplay:YES];
+}
+
 - (IBAction)topViewAction:(id)sender {
     [act topView];
     [glView setNeedsDisplay:YES];

@@ -44,6 +44,11 @@
 - (IBAction)moveViewpointAction:(id)sender;
 - (IBAction)zoomAction:(id)sender;
 - (IBAction)fronViewAction:(id)sender;
+- (IBAction)frontViewAction:(id)sender;
+- (IBAction)bottomViewAction:(id)sender;
+- (IBAction)backViewAction:(id)sender;
+- (IBAction)leftViewAction:(id)sender;
+- (IBAction)rightViewAction:(id)sender;
 - (IBAction)topViewAction:(id)sender;
 - (IBAction)moveObjectAction:(id)sender;
 - (IBAction)deleteAction:(id)sender;

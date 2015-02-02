@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
@@ -99,21 +99,39 @@
                             </menuItem>
                             <menuItem title="Front View" id="f5a-By-jRN">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="frontViewAction:" target="834" id="KoU-XF-djb"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Left View" id="laH-0o-2tW">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="leftViewAction:" target="834" id="xyB-t9-lb6"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Right View" id="0OS-yU-UL9">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="rightViewAction:" target="834" id="MPU-PC-RC6"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Back View" id="dxM-9M-AGe">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="backViewAction:" target="834" id="4wb-kr-8ke"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Top View" id="rNG-LH-3Ks">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="topViewAction:" target="834" id="fOc-c5-wro"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Bottom View" id="54l-P8-ouY">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="bottomViewAction:" target="834" id="EMI-1b-zhv"/>
+                                </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="Ppa-Af-eTT"/>
                             <menuItem title="Fit Printer" id="Pxl-dM-RQd">
@@ -459,9 +477,15 @@
                             <action selector="emergencyAction:" target="839" id="1338"/>
                         </connections>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="9574AAA8-8E59-4014-B63D-C38791E69820" label="Add" paletteLabel="Add" tag="-1" image="load_48" id="fPP-Vd-4de"/>
+                    <toolbarItem implicitItemIdentifier="515BD5C4-5BCA-4C3F-A5DA-B1067004DA0A" label="Slice" paletteLabel="Slice" tag="-1" image="slicer_48" id="eLn-gz-2pL"/>
+                    <toolbarItem implicitItemIdentifier="BD306B6F-4A76-494C-87A7-98B69C772DE9" label="Connect" paletteLabel="Connect" tag="-1" image="connect_48" id="60u-C4-6MO"/>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="867"/>
+                    <toolbarItem reference="fPP-Vd-4de"/>
+                    <toolbarItem reference="eLn-gz-2pL"/>
+                    <toolbarItem reference="60u-C4-6MO"/>
                     <toolbarItem reference="871"/>
                     <toolbarItem reference="866"/>
                     <toolbarItem reference="865"/>
@@ -474,7 +498,7 @@
             <connections>
                 <outlet property="delegate" destination="839" id="1411"/>
             </connections>
-            <point key="canvasLocation" x="170.5" y="266"/>
+            <point key="canvasLocation" x="135.5" y="389"/>
         </window>
         <customObject id="836" customClass="NSFontManager"/>
         <customObject id="837" customClass="LogSplitViewDelegate">
@@ -731,11 +755,14 @@ DQ
         </window>
     </objects>
     <resources>
+        <image name="connect_48" width="36" height="36"/>
         <image name="disconnect" width="256" height="256"/>
         <image name="emergencystop" width="256" height="256"/>
         <image name="killjob32" width="256" height="256"/>
+        <image name="load_48" width="36" height="36"/>
         <image name="pauseiconbig" width="256" height="256"/>
         <image name="repetier-logo-trans128" width="512" height="512"/>
         <image name="runjob32" width="256" height="256"/>
+        <image name="slicer_48" width="36" height="36"/>
     </resources>
 </document>

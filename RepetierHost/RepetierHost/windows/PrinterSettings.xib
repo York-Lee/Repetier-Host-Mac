@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">14B25</string>
+		<string key="IBDocument.SystemVersion">14C109</string>
 		<string key="IBDocument.InterfaceBuilderVersion">6254</string>
-		<string key="IBDocument.AppKitVersion">1343.16</string>
-		<string key="IBDocument.HIToolboxVersion">755.00</string>
+		<string key="IBDocument.AppKitVersion">1344.72</string>
+		<string key="IBDocument.HIToolboxVersion">757.30</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">6254</string>
@@ -65,7 +65,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{13, 41}, {454, 422}}</string>
 							<reference key="NSSuperview" ref="1006"/>
-							<reference key="NSNextKeyView" ref="636095590"/>
+							<reference key="NSNextKeyView" ref="791275758"/>
 							<string key="NSReuseIdentifierKey">_NS:608</string>
 							<array class="NSMutableArray" key="NSTabViewItems">
 								<object class="NSTabViewItem" id="841389448">
@@ -1891,7 +1891,7 @@
 								<object class="NSTabViewItem" id="568740392">
 									<string key="NSIdentifier">3</string>
 									<object class="NSView" key="NSView" id="791275758">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="739589966"/>
 										<int key="NSvFlags">274</int>
 										<array class="NSMutableArray" key="NSSubviews">
 											<object class="NSTextField" id="743256304">
@@ -2698,13 +2698,13 @@
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{-3, -3}, {441, 216}}</string>
 												<reference key="NSSuperview" ref="791275758"/>
-												<reference key="NSNextKeyView" ref="392964811"/>
+												<reference key="NSNextKeyView" ref="1034161680"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<array class="NSMutableArray" key="NSTabViewItems">
 													<object class="NSTabViewItem" id="856090246">
 														<string key="NSIdentifier">1</string>
 														<object class="NSView" key="NSView" id="392964811">
-															<reference key="NSNextResponder" ref="31881545"/>
+															<nil key="NSNextResponder"/>
 															<int key="NSvFlags">274</int>
 															<array class="NSMutableArray" key="NSSubviews">
 																<object class="NSTextField" id="582873375">
@@ -3227,7 +3227,6 @@
 																</object>
 															</array>
 															<string key="NSFrameSize">{441, 216}</string>
-															<reference key="NSSuperview" ref="31881545"/>
 															<reference key="NSNextKeyView" ref="582873375"/>
 															<string key="NSReuseIdentifierKey">_NS:11</string>
 														</object>
@@ -4225,8 +4224,8 @@
 													</object>
 													<object class="NSTabViewItem" id="355972884">
 														<object class="NSView" key="NSView" id="1034161680">
-															<nil key="NSNextResponder"/>
-															<int key="NSvFlags">256</int>
+															<reference key="NSNextResponder" ref="31881545"/>
+															<int key="NSvFlags">274</int>
 															<array class="NSMutableArray" key="NSSubviews">
 																<object class="NSTextField" id="358467616">
 																	<reference key="NSNextResponder" ref="1034161680"/>
@@ -4439,7 +4438,6 @@
 																	<int key="NSvFlags">268</int>
 																	<string key="NSFrame">{{14, 55}, {403, 104}}</string>
 																	<reference key="NSSuperview" ref="1034161680"/>
-																	<reference key="NSNextKeyView" ref="1068527356"/>
 																	<string key="NSReuseIdentifierKey">_NS:9</string>
 																	<string key="NSAntiCompressionPriority">{250, 750}</string>
 																	<bool key="NSEnabled">YES</bool>
@@ -4459,6 +4457,7 @@
 																</object>
 															</array>
 															<string key="NSFrameSize">{441, 216}</string>
+															<reference key="NSSuperview" ref="31881545"/>
 															<reference key="NSNextKeyView" ref="358467616"/>
 														</object>
 														<string key="NSLabel">Delta</string>
@@ -4466,16 +4465,17 @@
 														<reference key="NSTabView" ref="31881545"/>
 													</object>
 												</array>
-												<reference key="NSSelectedTabViewItem" ref="856090246"/>
+												<reference key="NSSelectedTabViewItem" ref="355972884"/>
 												<reference key="NSFont" ref="187322652"/>
 												<int key="NSTvFlags">6</int>
 												<bool key="NSAllowTruncatedLabels">YES</bool>
 												<array class="NSMutableArray" key="NSSubviews">
-													<reference ref="392964811"/>
+													<reference ref="1034161680"/>
 												</array>
 											</object>
 										</array>
 										<string key="NSFrame">{{10, 33}, {434, 376}}</string>
+										<reference key="NSSuperview" ref="739589966"/>
 										<reference key="NSNextKeyView" ref="976341430"/>
 										<string key="NSReuseIdentifierKey">_NS:620</string>
 									</object>
@@ -4485,7 +4485,7 @@
 								</object>
 								<object class="NSTabViewItem" id="847379099">
 									<object class="NSView" key="NSView" id="636095590">
-										<reference key="NSNextResponder" ref="739589966"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">274</int>
 										<array class="NSMutableArray" key="NSSubviews">
 											<object class="NSBox" id="594275138">
@@ -4619,7 +4619,6 @@
 											</object>
 										</array>
 										<string key="NSFrame">{{10, 33}, {434, 376}}</string>
-										<reference key="NSSuperview" ref="739589966"/>
 										<reference key="NSNextKeyView" ref="594275138"/>
 									</object>
 									<string key="NSLabel">Advanced</string>
@@ -4627,13 +4626,13 @@
 									<reference key="NSTabView" ref="739589966"/>
 								</object>
 							</array>
-							<reference key="NSSelectedTabViewItem" ref="847379099"/>
+							<reference key="NSSelectedTabViewItem" ref="568740392"/>
 							<reference key="NSFont" ref="26"/>
 							<int key="NSTvFlags">0</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<array class="NSMutableArray" key="NSSubviews">
-								<reference ref="636095590"/>
+								<reference ref="791275758"/>
 							</array>
 						</object>
 						<object class="NSTextField" id="772311037">
@@ -4825,7 +4824,7 @@
 					<string key="NSFrameSize">{480, 505}</string>
 					<reference key="NSNextKeyView" ref="772311037"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 877}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 900}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<string key="NSFrameAutosaveName">PrinterSettingsWindow</string>
 				<int key="NSWindowAnimationBehavior">4</int>
@@ -4964,7 +4963,7 @@
 					<reference key="NSNextKeyView" ref="837021904"/>
 					<string key="NSReuseIdentifierKey">_NS:207</string>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 877}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 900}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>

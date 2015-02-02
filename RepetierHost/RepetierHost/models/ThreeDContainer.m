@@ -74,11 +74,81 @@
     userPosition[2] = 0;
 //    gl.Invalidate();
 }
+-(void)frontView {
+    rotX = 0;
+    rotZ = 0;
+    zoom = 1.0f;
+    topView = NO;
+    PrinterConfiguration *conf = connection->config;
+    viewCenter[0] = 0;//0.25 * conf->width;
+    viewCenter[1] = 0;// conf->depth * 0.25;
+    viewCenter[2] = 0;//0.0f * conf->height;
+    userPosition[0] = 0;
+    userPosition[1] = -1.6*sqrt(conf->depth*conf->depth+conf->width*conf->width+conf->height*conf->height);
+    userPosition[2] = 0;
+    //    gl.Invalidate();
+}
+-(void)leftView {
+    rotX = 0;
+    rotZ = 90;
+    zoom = 1.0f;
+    topView = NO;
+    PrinterConfiguration *conf = connection->config;
+    viewCenter[0] = 0;//0.25 * conf->width;
+    viewCenter[1] = 0;// conf->depth * 0.25;
+    viewCenter[2] = 0;//0.0f * conf->height;
+    userPosition[0] = 0;
+    userPosition[1] = -1.6*sqrt(conf->depth*conf->depth+conf->width*conf->width+conf->height*conf->height);
+    userPosition[2] = 0;
+    //    gl.Invalidate();
+}
+-(void)rightView {
+    rotX = 0;
+    rotZ = -90;
+    zoom = 1.0f;
+    topView = NO;
+    PrinterConfiguration *conf = connection->config;
+    viewCenter[0] = 0;//0.25 * conf->width;
+    viewCenter[1] = 0;// conf->depth * 0.25;
+    viewCenter[2] = 0;//0.0f * conf->height;
+    userPosition[0] = 0;
+    userPosition[1] = -1.6*sqrt(conf->depth*conf->depth+conf->width*conf->width+conf->height*conf->height);
+    userPosition[2] = 0;
+    //    gl.Invalidate();
+}
+-(void)backView {
+    rotX = 0;
+    rotZ = 180;
+    zoom = 1.0f;
+    topView = NO;
+    PrinterConfiguration *conf = connection->config;
+    viewCenter[0] = 0;//0.25 * conf->width;
+    viewCenter[1] = 0;// conf->depth * 0.25;
+    viewCenter[2] = 0;//0.0f * conf->height;
+    userPosition[0] = 0;
+    userPosition[1] = -1.6*sqrt(conf->depth*conf->depth+conf->width*conf->width+conf->height*conf->height);
+    userPosition[2] = 0;
+    //    gl.Invalidate();
+}
 -(void)topView {
     rotX = 90;
     rotZ = 0;
     zoom = 1.0f;
     topView = YES;
+    PrinterConfiguration *conf = connection->config;
+    viewCenter[0] = 0;//0.25 * conf->width;
+    viewCenter[1] = 0;// conf->depth * 0.25;
+    viewCenter[2] = 0;//0.0f * conf->height;
+    userPosition[0] = 0;
+    userPosition[1] = -1.6*sqrt(conf->depth*conf->depth+conf->width*conf->width+conf->height*conf->height);
+    userPosition[2] = 0;
+    //    gl.Invalidate();
+}
+-(void)bottomView {
+    rotX = -90;
+    rotZ = 0;
+    zoom = 1.0f;
+    topView = NO;
     PrinterConfiguration *conf = connection->config;
     viewCenter[0] = 0;//0.25 * conf->width;
     viewCenter[1] = 0;// conf->depth * 0.25;

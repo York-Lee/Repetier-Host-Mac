@@ -45,6 +45,11 @@
 @property (retain)Geom3DVector *pickPoint;
 
 -(void)resetView;
+-(void)frontView;
+-(void)bottomView;
+-(void)backView;
+-(void)leftView;
+-(void)rightView;
 -(void)topView;
 -(void)setupViewportWidth:(double)width height:(double)height;
 -(void)paintWidth:(double)width height:(double)height;
