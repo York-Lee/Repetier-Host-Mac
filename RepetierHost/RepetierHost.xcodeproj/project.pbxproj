@@ -10,6 +10,8 @@
 		38BF8A161A7B7025007E0453 /* connect_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BF8A131A7B7025007E0453 /* connect_48.png */; };
 		38BF8A171A7B7025007E0453 /* load_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BF8A141A7B7025007E0453 /* load_48.png */; };
 		38BF8A181A7B7025007E0453 /* slicer_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BF8A151A7B7025007E0453 /* slicer_48.png */; };
+		38D301511A8145ED00499F01 /* SliceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D3014F1A8145ED00499F01 /* SliceConfig.m */; };
+		38D301521A8145ED00499F01 /* SliceConfig.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D301501A8145ED00499F01 /* SliceConfig.xib */; };
 		FD01F4A815BB0AD900754A5F /* autoposition.png in Resources */ = {isa = PBXBuildFile; fileRef = FD01F4A415BB0AD900754A5F /* autoposition.png */; };
 		FD01F4A915BB0AD900754A5F /* center.png in Resources */ = {isa = PBXBuildFile; fileRef = FD01F4A515BB0AD900754A5F /* center.png */; };
 		FD01F4AA15BB0AD900754A5F /* drop.png in Resources */ = {isa = PBXBuildFile; fileRef = FD01F4A615BB0AD900754A5F /* drop.png */; };
@@ -164,6 +166,9 @@
 		38BF8A131A7B7025007E0453 /* connect_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connect_48.png; sourceTree = "<group>"; };
 		38BF8A141A7B7025007E0453 /* load_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_48.png; sourceTree = "<group>"; };
 		38BF8A151A7B7025007E0453 /* slicer_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slicer_48.png; sourceTree = "<group>"; };
+		38D3014E1A8145ED00499F01 /* SliceConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliceConfig.h; sourceTree = "<group>"; };
+		38D3014F1A8145ED00499F01 /* SliceConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliceConfig.m; sourceTree = "<group>"; };
+		38D301501A8145ED00499F01 /* SliceConfig.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SliceConfig.xib; path = ../controller/SliceConfig.xib; sourceTree = "<group>"; };
 		FD01F4A415BB0AD900754A5F /* autoposition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = autoposition.png; sourceTree = "<group>"; };
 		FD01F4A515BB0AD900754A5F /* center.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = center.png; sourceTree = "<group>"; };
 		FD01F4A615BB0AD900754A5F /* drop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drop.png; sourceTree = "<group>"; };
@@ -538,6 +543,7 @@
 				FD74DBC714D1C83F00422BFE /* Preferences.xib */,
 				FD0AE1D414DB446A002356B8 /* Slic3rSettings.xib */,
 				FD9447B715D8230700AFE7F1 /* Slicer.xib */,
+				38D301501A8145ED00499F01 /* SliceConfig.xib */,
 			);
 			path = windows;
 			sourceTree = "<group>";
@@ -614,6 +620,8 @@
 				FD28664414DE8CFA0081750D /* TemperatureView.m */,
 				FD97347D14DC5DCA007D2E42 /* Slic3rConfig.h */,
 				FD97347E14DC5DCA007D2E42 /* Slic3rConfig.m */,
+				38D3014E1A8145ED00499F01 /* SliceConfig.h */,
+				38D3014F1A8145ED00499F01 /* SliceConfig.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -787,6 +795,7 @@
 			files = (
 				FDEDF7B3148961D800E6CFF1 /* InfoPlist.strings in Resources */,
 				FDEDF7B9148961D800E6CFF1 /* Credits.rtf in Resources */,
+				38D301521A8145ED00499F01 /* SliceConfig.xib in Resources */,
 				FDEDF7C6148961F300E6CFF1 /* repetier-logo128.png in Resources */,
 				FDEDF7CB148962A200E6CFF1 /* PrinterSettings.xib in Resources */,
 				FDEDF7D4148A174A00E6CFF1 /* loadgcode.png in Resources */,
@@ -892,6 +901,7 @@
 				FD1E242314967310008AF30C /* ThreeDContainer.m in Sources */,
 				FD1E24261497A612008AF30C /* RHOpenGLView.m in Sources */,
 				FD1E242B1497B7D4008AF30C /* ThreeDConfig.m in Sources */,
+				38D301511A8145ED00499F01 /* SliceConfig.m in Sources */,
 				FD67BF4D149A6C95001B124B /* STL.m in Sources */,
 				FD67BF51149A715C001B124B /* ThreeDModel.m in Sources */,
 				FD67BF54149AA9CA001B124B /* RHMatrix.c in Sources */,

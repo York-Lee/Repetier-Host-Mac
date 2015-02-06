@@ -37,6 +37,7 @@
 //@class RHTempertuareController;
 @class RHManualControl;
 @class RHSlicer;
+@class SliceConfig;
 
 @interface RHAppDelegate : NSObject <NSApplicationDelegate,NSWindowDelegate>
 {
@@ -47,6 +48,7 @@
     NSImage *runJobIcon,*pauseJobIcon;
     NSImage *viewFilamentIcon,*hideFilamentIcon;
     IBOutlet PrinterSettingsController * printerSettingsController;
+    //IBOutlet SliceConfig * sliceConfig;
     IBOutlet NSWindow *window;
     ThreeDContainer *codePreview;
     ThreeDContainer *stlView;
@@ -120,6 +122,7 @@
     IBOutlet NSMenuItem *sendScript4Menu;
     IBOutlet NSMenuItem *sendScript5Menu;
     IBOutlet NSPanel *heaterWarningPanel;
+    //IBOutlet SliceView *sliceView;
 }
 @property (assign) IBOutlet NSWindow *window;
 -(void)replaceGCodeView:(NSNotification*)event;
@@ -127,6 +130,7 @@
 -(void)openRecentGCode:(NSMenuItem*)item;
 - (IBAction)toolConnect:(id)sender;
 - (IBAction)openPrinterSettings:(id)sender;
+- (IBAction)openSlicerSettings:(id)sender;
 -(void)printerInfoReceived:(NSNotification*)notification;
 - (void)connectionOpened:(NSNotification *)notification;
 //-(void)temperatureRead:(NSNotification*)notification;

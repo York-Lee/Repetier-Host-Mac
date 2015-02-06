@@ -36,6 +36,7 @@
 #import "STLComposer.h"
 #import "GCodeView.h"
 #import "RHSound.h"
+#import "SliceConfig.h"
 
 @implementation RHAppDelegate
 
@@ -205,6 +206,13 @@
   //  [printerSettingsController showWindow:self];
     [printerSettingsController.window makeKeyAndOrderFront:nil];
 }
+
+- (IBAction)openSlicerSettings:(id)sender {
+    SliceConfig *controllerWindow = [[SliceConfig alloc] initWithWindowNibName:@"SliceConfig"];
+
+    [controllerWindow showWindow:self];
+}
+
 -(void)updateJobButtons {
     if(connection->connected) {
         [runJobButton setTag:YES];

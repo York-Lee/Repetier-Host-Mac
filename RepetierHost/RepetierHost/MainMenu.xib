@@ -311,11 +311,11 @@
                                                             </tabViewItem>
                                                             <tabViewItem label="Slicer" identifier="" id="1414">
                                                                 <view key="view" id="1415">
-                                                                    <rect key="frame" x="10" y="25" width="349" height="257"/>
+                                                                    <rect key="frame" x="10" y="25" width="378" height="404"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <customView id="1416" customClass="RHSlicer">
-                                                                            <rect key="frame" x="-2" y="0.0" width="352" height="257"/>
+                                                                            <rect key="frame" x="-2" y="0.0" width="381" height="404"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         </customView>
                                                                     </subviews>
@@ -477,8 +477,16 @@
                             <action selector="emergencyAction:" target="839" id="1338"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="9574AAA8-8E59-4014-B63D-C38791E69820" label="Add" paletteLabel="Add" tag="-1" image="load_48" id="fPP-Vd-4de"/>
-                    <toolbarItem implicitItemIdentifier="515BD5C4-5BCA-4C3F-A5DA-B1067004DA0A" label="Slice" paletteLabel="Slice" tag="-1" image="slicer_48" id="eLn-gz-2pL"/>
+                    <toolbarItem implicitItemIdentifier="9574AAA8-8E59-4014-B63D-C38791E69820" label="Add" paletteLabel="Add" tag="-1" image="load_48" id="fPP-Vd-4de">
+                        <connections>
+                            <action selector="addSTLFile:" target="848" id="NBJ-LZ-NjU"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="515BD5C4-5BCA-4C3F-A5DA-B1067004DA0A" label="Slice" paletteLabel="Slice" tag="-1" image="slicer_48" id="eLn-gz-2pL">
+                        <connections>
+                            <action selector="openSlicerSettings:" target="839" id="XL5-Z2-aA6"/>
+                        </connections>
+                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="BD306B6F-4A76-494C-87A7-98B69C772DE9" label="Connect" paletteLabel="Connect" tag="-1" image="connect_48" id="60u-C4-6MO"/>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
