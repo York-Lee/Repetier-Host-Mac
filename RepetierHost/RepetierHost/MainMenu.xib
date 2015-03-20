@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -457,11 +457,6 @@
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="871"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="870"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarSeparatorItem" id="869"/>
-                    <toolbarItem implicitItemIdentifier="64F0AA60-E7BE-42E2-9FBC-87F50EB01FB7" label="  Connect  " paletteLabel="Connect" tag="1" image="disconnect" id="867">
-                        <connections>
-                            <action selector="toolConnect:" target="839" id="1021"/>
-                        </connections>
-                    </toolbarItem>
                     <toolbarItem implicitItemIdentifier="F13DE5C4-1692-4219-999C-E376B3CB8BAC" explicitItemIdentifier="toolRunJob" label="Run job" paletteLabel="Run job" tag="2" image="runjob32" id="866" customClass="EnableToollbarItem">
                         <connections>
                             <action selector="runJobAction:" target="839" id="1062"/>
@@ -490,7 +485,6 @@
                     <toolbarItem implicitItemIdentifier="BD306B6F-4A76-494C-87A7-98B69C772DE9" label="Connect" paletteLabel="Connect" tag="-1" image="connect_48" id="60u-C4-6MO"/>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
-                    <toolbarItem reference="867"/>
                     <toolbarItem reference="fPP-Vd-4de"/>
                     <toolbarItem reference="eLn-gz-2pL"/>
                     <toolbarItem reference="60u-C4-6MO"/>
@@ -533,7 +527,6 @@
                 <outlet property="actionTabDelegate" destination="838" id="840"/>
                 <outlet property="composer" destination="848" id="1240"/>
                 <outlet property="composerTab" destination="843" id="1004"/>
-                <outlet property="connectButton" destination="867" id="1001"/>
                 <outlet property="creditsText" destination="1381" id="1388"/>
                 <outlet property="editorSplitterDelegate" destination="1323" id="1407"/>
                 <outlet property="emergencyButton" destination="1336" id="1337"/>
@@ -764,7 +757,6 @@ DQ
     </objects>
     <resources>
         <image name="connect_48" width="36" height="36"/>
-        <image name="disconnect" width="256" height="256"/>
         <image name="emergencystop" width="256" height="256"/>
         <image name="killjob32" width="256" height="256"/>
         <image name="load_48" width="36" height="36"/>

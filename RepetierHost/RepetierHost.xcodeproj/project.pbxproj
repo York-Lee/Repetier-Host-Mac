@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38ACD2D51ABCB0300036B6E9 /* list_ports_linux.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2CF1ABCB0300036B6E9 /* list_ports_linux.mm */; };
+		38ACD2D61ABCB0300036B6E9 /* list_ports_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2D01ABCB0300036B6E9 /* list_ports_osx.mm */; };
+		38ACD2D71ABCB0300036B6E9 /* list_ports_win.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2D11ABCB0300036B6E9 /* list_ports_win.mm */; };
+		38ACD2D81ABCB0300036B6E9 /* unix.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2D21ABCB0300036B6E9 /* unix.mm */; };
+		38ACD2D91ABCB0300036B6E9 /* win.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2D31ABCB0300036B6E9 /* win.mm */; };
+		38ACD2DA1ABCB0300036B6E9 /* serial.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2D41ABCB0300036B6E9 /* serial.mm */; };
+		38ACD2EB1ABCB07E0036B6E9 /* ibuttoncrc.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2DC1ABCB07E0036B6E9 /* ibuttoncrc.m */; };
+		38ACD2EC1ABCB07E0036B6E9 /* packetbuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2DF1ABCB07E0036B6E9 /* packetbuilder.m */; };
+		38ACD2ED1ABCB07E0036B6E9 /* packetprocessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2E21ABCB07E0036B6E9 /* packetprocessor.m */; };
+		38ACD2EE1ABCB07E0036B6E9 /* packetresponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2E41ABCB07E0036B6E9 /* packetresponse.m */; };
+		38ACD2EF1ABCB07E0036B6E9 /* tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2E61ABCB07E0036B6E9 /* tools.m */; };
+		38ACD2F01ABCB07E0036B6E9 /* x3gstreamparser.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2E81ABCB07E0036B6E9 /* x3gstreamparser.m */; };
+		38ACD2F11ABCB07E0036B6E9 /* x3gstreamprocess.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2EA1ABCB07E0036B6E9 /* x3gstreamprocess.m */; };
 		38BF8A161A7B7025007E0453 /* connect_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BF8A131A7B7025007E0453 /* connect_48.png */; };
 		38BF8A171A7B7025007E0453 /* load_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BF8A141A7B7025007E0453 /* load_48.png */; };
 		38BF8A181A7B7025007E0453 /* slicer_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BF8A151A7B7025007E0453 /* slicer_48.png */; };
@@ -163,6 +176,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		38ACD2C81ABCB0300036B6E9 /* unix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unix.h; sourceTree = "<group>"; };
+		38ACD2C91ABCB0300036B6E9 /* win.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = win.h; sourceTree = "<group>"; };
+		38ACD2CA1ABCB0300036B6E9 /* serial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serial.h; sourceTree = "<group>"; };
+		38ACD2CB1ABCB0300036B6E9 /* v8stdint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = v8stdint.h; sourceTree = "<group>"; };
+		38ACD2CF1ABCB0300036B6E9 /* list_ports_linux.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = list_ports_linux.mm; sourceTree = "<group>"; };
+		38ACD2D01ABCB0300036B6E9 /* list_ports_osx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = list_ports_osx.mm; sourceTree = "<group>"; };
+		38ACD2D11ABCB0300036B6E9 /* list_ports_win.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = list_ports_win.mm; sourceTree = "<group>"; };
+		38ACD2D21ABCB0300036B6E9 /* unix.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = unix.mm; sourceTree = "<group>"; };
+		38ACD2D31ABCB0300036B6E9 /* win.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = win.mm; sourceTree = "<group>"; };
+		38ACD2D41ABCB0300036B6E9 /* serial.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = serial.mm; sourceTree = "<group>"; };
+		38ACD2DB1ABCB07E0036B6E9 /* ibuttoncrc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ibuttoncrc.h; path = connection/ibuttoncrc.h; sourceTree = "<group>"; };
+		38ACD2DC1ABCB07E0036B6E9 /* ibuttoncrc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ibuttoncrc.m; path = connection/ibuttoncrc.m; sourceTree = "<group>"; };
+		38ACD2DD1ABCB07E0036B6E9 /* motherboardcommandcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = motherboardcommandcode.h; path = connection/motherboardcommandcode.h; sourceTree = "<group>"; };
+		38ACD2DE1ABCB07E0036B6E9 /* packetbuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = packetbuilder.h; path = connection/packetbuilder.h; sourceTree = "<group>"; };
+		38ACD2DF1ABCB07E0036B6E9 /* packetbuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = packetbuilder.m; path = connection/packetbuilder.m; sourceTree = "<group>"; };
+		38ACD2E01ABCB07E0036B6E9 /* packetconstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = packetconstants.h; path = connection/packetconstants.h; sourceTree = "<group>"; };
+		38ACD2E11ABCB07E0036B6E9 /* packetprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = packetprocessor.h; path = connection/packetprocessor.h; sourceTree = "<group>"; };
+		38ACD2E21ABCB07E0036B6E9 /* packetprocessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = packetprocessor.m; path = connection/packetprocessor.m; sourceTree = "<group>"; };
+		38ACD2E31ABCB07E0036B6E9 /* packetresponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = packetresponse.h; path = connection/packetresponse.h; sourceTree = "<group>"; };
+		38ACD2E41ABCB07E0036B6E9 /* packetresponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = packetresponse.m; path = connection/packetresponse.m; sourceTree = "<group>"; };
+		38ACD2E51ABCB07E0036B6E9 /* tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tools.h; path = connection/tools.h; sourceTree = "<group>"; };
+		38ACD2E61ABCB07E0036B6E9 /* tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = tools.m; path = connection/tools.m; sourceTree = "<group>"; };
+		38ACD2E71ABCB07E0036B6E9 /* x3gstreamparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = x3gstreamparser.h; path = connection/x3gstreamparser.h; sourceTree = "<group>"; };
+		38ACD2E81ABCB07E0036B6E9 /* x3gstreamparser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = x3gstreamparser.m; path = connection/x3gstreamparser.m; sourceTree = "<group>"; };
+		38ACD2E91ABCB07E0036B6E9 /* x3gstreamprocess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = x3gstreamprocess.h; path = connection/x3gstreamprocess.h; sourceTree = "<group>"; };
+		38ACD2EA1ABCB07E0036B6E9 /* x3gstreamprocess.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = x3gstreamprocess.m; path = connection/x3gstreamprocess.m; sourceTree = "<group>"; };
 		38BF8A131A7B7025007E0453 /* connect_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connect_48.png; sourceTree = "<group>"; };
 		38BF8A141A7B7025007E0453 /* load_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_48.png; sourceTree = "<group>"; };
 		38BF8A151A7B7025007E0453 /* slicer_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slicer_48.png; sourceTree = "<group>"; };
@@ -386,6 +425,88 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38ACD2C41ABCAFDA0036B6E9 /* serial */ = {
+			isa = PBXGroup;
+			children = (
+				38ACD2C61ABCB0300036B6E9 /* include */,
+				38ACD2CC1ABCB0300036B6E9 /* src */,
+			);
+			name = serial;
+			sourceTree = "<group>";
+		};
+		38ACD2C51ABCAFF00036B6E9 /* connection */ = {
+			isa = PBXGroup;
+			children = (
+				38ACD2DB1ABCB07E0036B6E9 /* ibuttoncrc.h */,
+				38ACD2DC1ABCB07E0036B6E9 /* ibuttoncrc.m */,
+				38ACD2DD1ABCB07E0036B6E9 /* motherboardcommandcode.h */,
+				38ACD2DE1ABCB07E0036B6E9 /* packetbuilder.h */,
+				38ACD2DF1ABCB07E0036B6E9 /* packetbuilder.m */,
+				38ACD2E01ABCB07E0036B6E9 /* packetconstants.h */,
+				38ACD2E11ABCB07E0036B6E9 /* packetprocessor.h */,
+				38ACD2E21ABCB07E0036B6E9 /* packetprocessor.m */,
+				38ACD2E31ABCB07E0036B6E9 /* packetresponse.h */,
+				38ACD2E41ABCB07E0036B6E9 /* packetresponse.m */,
+				38ACD2E51ABCB07E0036B6E9 /* tools.h */,
+				38ACD2E61ABCB07E0036B6E9 /* tools.m */,
+				38ACD2E71ABCB07E0036B6E9 /* x3gstreamparser.h */,
+				38ACD2E81ABCB07E0036B6E9 /* x3gstreamparser.m */,
+				38ACD2E91ABCB07E0036B6E9 /* x3gstreamprocess.h */,
+				38ACD2EA1ABCB07E0036B6E9 /* x3gstreamprocess.m */,
+			);
+			name = connection;
+			sourceTree = "<group>";
+		};
+		38ACD2C61ABCB0300036B6E9 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				38ACD2C71ABCB0300036B6E9 /* impl */,
+				38ACD2CA1ABCB0300036B6E9 /* serial.h */,
+				38ACD2CB1ABCB0300036B6E9 /* v8stdint.h */,
+			);
+			name = include;
+			path = serial/include;
+			sourceTree = "<group>";
+		};
+		38ACD2C71ABCB0300036B6E9 /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				38ACD2C81ABCB0300036B6E9 /* unix.h */,
+				38ACD2C91ABCB0300036B6E9 /* win.h */,
+			);
+			path = impl;
+			sourceTree = "<group>";
+		};
+		38ACD2CC1ABCB0300036B6E9 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				38ACD2CD1ABCB0300036B6E9 /* impl */,
+				38ACD2D41ABCB0300036B6E9 /* serial.mm */,
+			);
+			name = src;
+			path = serial/src;
+			sourceTree = "<group>";
+		};
+		38ACD2CD1ABCB0300036B6E9 /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				38ACD2CE1ABCB0300036B6E9 /* list_ports */,
+				38ACD2D21ABCB0300036B6E9 /* unix.mm */,
+				38ACD2D31ABCB0300036B6E9 /* win.mm */,
+			);
+			path = impl;
+			sourceTree = "<group>";
+		};
+		38ACD2CE1ABCB0300036B6E9 /* list_ports */ = {
+			isa = PBXGroup;
+			children = (
+				38ACD2CF1ABCB0300036B6E9 /* list_ports_linux.mm */,
+				38ACD2D01ABCB0300036B6E9 /* list_ports_osx.mm */,
+				38ACD2D11ABCB0300036B6E9 /* list_ports_win.mm */,
+			);
+			path = list_ports;
+			sourceTree = "<group>";
+		};
 		FD1E242014967242008AF30C /* 3D */ = {
 			isa = PBXGroup;
 			children = (
@@ -494,6 +615,8 @@
 		FDEDF7AE148961D800E6CFF1 /* RepetierHost */ = {
 			isa = PBXGroup;
 			children = (
+				38ACD2C51ABCAFF00036B6E9 /* connection */,
+				38ACD2C41ABCAFDA0036B6E9 /* serial */,
 				FDB2C6871494CB5700276479 /* transformer */,
 				FDB2C67A1493CC5100276479 /* delegates */,
 				FDEDF800148A3D8500E6CFF1 /* extensions */,
@@ -888,11 +1011,15 @@
 				FDEDF80E148A3E1A00E6CFF1 /* PrinterConfiguration.m in Sources */,
 				FDEDF813148A694900E6CFF1 /* RHLogger.m in Sources */,
 				FDEDF816148A879800E6CFF1 /* PrinterConnection.m in Sources */,
+				38ACD2EB1ABCB07E0036B6E9 /* ibuttoncrc.m in Sources */,
 				FDEDF81A148B603000E6CFF1 /* StringUtil.m in Sources */,
 				FD1719CF148D35750023E262 /* RHLinkedList.m in Sources */,
+				38ACD2D61ABCB0300036B6E9 /* list_ports_osx.mm in Sources */,
+				38ACD2DA1ABCB0300036B6E9 /* serial.mm in Sources */,
 				FD1719D3148E83540023E262 /* GCode.m in Sources */,
 				FD1719D6148EA3040023E262 /* GCodeAnalyzer.m in Sources */,
 				FD1719D9148EAD850023E262 /* RHPrintjob.m in Sources */,
+				38ACD2F11ABCB07E0036B6E9 /* x3gstreamprocess.m in Sources */,
 				FDB2C67614926E6500276479 /* RHTempertuareController.m in Sources */,
 				FDB2C67914927CA900276479 /* RHLogView.m in Sources */,
 				FDB2C67D1493CC9300276479 /* LogSplitViewDelegate.m in Sources */,
@@ -905,13 +1032,18 @@
 				FD67BF4D149A6C95001B124B /* STL.m in Sources */,
 				FD67BF51149A715C001B124B /* ThreeDModel.m in Sources */,
 				FD67BF54149AA9CA001B124B /* RHMatrix.c in Sources */,
+				38ACD2D91ABCB0300036B6E9 /* win.mm in Sources */,
 				FD67BF5C149E08FA001B124B /* GCodeEditorController.m in Sources */,
 				FD67BF5F14A24364001B124B /* GCodeView.m in Sources */,
+				38ACD2F01ABCB07E0036B6E9 /* x3gstreamparser.m in Sources */,
+				38ACD2EF1ABCB07E0036B6E9 /* tools.m in Sources */,
 				FD67BF6814A5D042001B124B /* Commands.m in Sources */,
 				FD98D9E314BB5AA00079AB43 /* GCodeVisual.m in Sources */,
 				FD98D9E814BCEF710079AB43 /* RHActionTabDelegate.m in Sources */,
+				38ACD2ED1ABCB07E0036B6E9 /* packetprocessor.m in Sources */,
 				FD13BF7614C090620007E33D /* RHAnimation.m in Sources */,
 				FD13BF7C14C1756D0007E33D /* STLComposer.m in Sources */,
+				38ACD2D71ABCB0300036B6E9 /* list_ports_win.mm in Sources */,
 				FD6E2F7614C2446700F57498 /* EEPROMController.m in Sources */,
 				FD74DBB814CAF7E000422BFE /* VirtualPrinter.m in Sources */,
 				FD74DBC114CC727C00422BFE /* EnableToollbarItem.m in Sources */,
@@ -923,16 +1055,20 @@
 				FD92675C14D85552005B31FF /* Slicer.m in Sources */,
 				FD97347F14DC5DCB007D2E42 /* Slic3rConfig.m in Sources */,
 				FD28663C14DD8E1A0081750D /* RHFileHistory.m in Sources */,
+				38ACD2D51ABCB0300036B6E9 /* list_ports_linux.mm in Sources */,
 				FD28664214DE7A130081750D /* TemperatureHistory.m in Sources */,
 				FD28664514DE8CFB0081750D /* TemperatureView.m in Sources */,
 				FD283A8814E6C43A00597203 /* HorizontalSpliViewDelegate.m in Sources */,
+				38ACD2D81ABCB0300036B6E9 /* unix.mm in Sources */,
 				FD283A9414EAC4ED00597203 /* FlippedNSView.m in Sources */,
+				38ACD2EC1ABCB07E0036B6E9 /* packetbuilder.m in Sources */,
 				FD283A9B14EFB10D00597203 /* HistoryTextField.m in Sources */,
 				FD22AFC41501822D009BE821 /* GCodeShort.m in Sources */,
 				FD141AD5150E5E5D00D74E18 /* RectPacker.m in Sources */,
 				FD1C3169158F87C100B13408 /* RHSound.m in Sources */,
 				FD9447BC15D82C6100AFE7F1 /* RHSlicer.m in Sources */,
 				FD9447BF15D831A100AFE7F1 /* IniFile.m in Sources */,
+				38ACD2EE1ABCB07E0036B6E9 /* packetresponse.m in Sources */,
 				FDDC2FB215D9A8700036B965 /* SkeinConfig.m in Sources */,
 				FD8155E11613541C0093B7A8 /* Geom3D.m in Sources */,
 				FD2B1DD7162C6D5700E6E335 /* ImageAndTextCell.m in Sources */,
@@ -1034,6 +1170,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RepetierHost/RepetierHost-Prefix.pch";
 				INFOPLIST_FILE = "RepetierHost/RepetierHost-Info.plist";
@@ -1056,6 +1193,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RepetierHost/RepetierHost-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;

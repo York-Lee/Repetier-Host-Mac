@@ -1,0 +1,7 @@
+#ifndef PACKETCONSTANTS_H
+#define PACKETCONSTANTS_H
+
+#define START_BYTE  0xD5
+
+#endif // PACKETCONSTANTS_H
+
