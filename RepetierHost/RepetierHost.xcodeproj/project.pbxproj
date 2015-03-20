@@ -20,6 +20,7 @@
 		38ACD2EF1ABCB07E0036B6E9 /* tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2E61ABCB07E0036B6E9 /* tools.m */; };
 		38ACD2F01ABCB07E0036B6E9 /* x3gstreamparser.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2E81ABCB07E0036B6E9 /* x3gstreamparser.m */; };
 		38ACD2F11ABCB07E0036B6E9 /* x3gstreamprocess.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2EA1ABCB07E0036B6E9 /* x3gstreamprocess.m */; };
+		38ACD2F61ABCBA000036B6E9 /* connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2F51ABCBA000036B6E9 /* connection.m */; };
 		38BF8A161A7B7025007E0453 /* connect_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BF8A131A7B7025007E0453 /* connect_48.png */; };
 		38BF8A171A7B7025007E0453 /* load_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BF8A141A7B7025007E0453 /* load_48.png */; };
 		38BF8A181A7B7025007E0453 /* slicer_48.png in Resources */ = {isa = PBXBuildFile; fileRef = 38BF8A151A7B7025007E0453 /* slicer_48.png */; };
@@ -202,6 +203,8 @@
 		38ACD2E81ABCB07E0036B6E9 /* x3gstreamparser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = x3gstreamparser.m; path = connection/x3gstreamparser.m; sourceTree = "<group>"; };
 		38ACD2E91ABCB07E0036B6E9 /* x3gstreamprocess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = x3gstreamprocess.h; path = connection/x3gstreamprocess.h; sourceTree = "<group>"; };
 		38ACD2EA1ABCB07E0036B6E9 /* x3gstreamprocess.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = x3gstreamprocess.m; path = connection/x3gstreamprocess.m; sourceTree = "<group>"; };
+		38ACD2F41ABCBA000036B6E9 /* connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = connection.h; path = connection/connection.h; sourceTree = "<group>"; };
+		38ACD2F51ABCBA000036B6E9 /* connection.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = connection.m; path = connection/connection.m; sourceTree = "<group>"; };
 		38BF8A131A7B7025007E0453 /* connect_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connect_48.png; sourceTree = "<group>"; };
 		38BF8A141A7B7025007E0453 /* load_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = load_48.png; sourceTree = "<group>"; };
 		38BF8A151A7B7025007E0453 /* slicer_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slicer_48.png; sourceTree = "<group>"; };
@@ -359,7 +362,7 @@
 		FDEDF7B6148961D800E6CFF1 /* RepetierHost-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RepetierHost-Prefix.pch"; sourceTree = "<group>"; };
 		FDEDF7B8148961D800E6CFF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		FDEDF7BA148961D800E6CFF1 /* RHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RHAppDelegate.h; sourceTree = "<group>"; };
-		FDEDF7BB148961D800E6CFF1 /* RHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RHAppDelegate.m; sourceTree = "<group>"; };
+		FDEDF7BB148961D800E6CFF1 /* RHAppDelegate.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = RHAppDelegate.m; sourceTree = "<group>"; };
 		FDEDF7C5148961F300E6CFF1 /* repetier-logo128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "repetier-logo128.png"; sourceTree = "<group>"; };
 		FDEDF7C81489627D00E6CFF1 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		FDEDF7CA148962A200E6CFF1 /* PrinterSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrinterSettings.xib; sourceTree = "<group>"; };
@@ -437,6 +440,8 @@
 		38ACD2C51ABCAFF00036B6E9 /* connection */ = {
 			isa = PBXGroup;
 			children = (
+				38ACD2F41ABCBA000036B6E9 /* connection.h */,
+				38ACD2F51ABCBA000036B6E9 /* connection.m */,
 				38ACD2DB1ABCB07E0036B6E9 /* ibuttoncrc.h */,
 				38ACD2DC1ABCB07E0036B6E9 /* ibuttoncrc.m */,
 				38ACD2DD1ABCB07E0036B6E9 /* motherboardcommandcode.h */,
@@ -1072,6 +1077,7 @@
 				FDDC2FB215D9A8700036B965 /* SkeinConfig.m in Sources */,
 				FD8155E11613541C0093B7A8 /* Geom3D.m in Sources */,
 				FD2B1DD7162C6D5700E6E335 /* ImageAndTextCell.m in Sources */,
+				38ACD2F61ABCBA000036B6E9 /* connection.m in Sources */,
 				FDAC195616B04CFC00479AA4 /* ClickableTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

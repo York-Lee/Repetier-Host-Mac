@@ -37,6 +37,7 @@
 #import "GCodeView.h"
 #import "RHSound.h"
 #import "SliceConfig.h"
+#import "connection.h"
 
 @implementation RHAppDelegate
 
@@ -190,10 +191,11 @@
     [stlComposer recheckChangedFiles];
 }
 - (IBAction)toolConnect:(id)sender {
-    if(connection->connected)
+    /*if(connection->connected)
         [connection close];
     else
-        [connection open];
+        [connection open];*/
+    Printer_connection *printer_Connection = [[Printer_connection alloc] init];
 }
 
 - (IBAction)openPrinterSettings:(id)sender {
