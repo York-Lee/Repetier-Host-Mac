@@ -13,13 +13,16 @@
 -(id) init
 {
     serial::Timeout to = serial::Timeout::simpleTimeout(500);
-    std::string portname = "/dev/ttyO1";
+    /*NSString* NSportname = [currentPrinterConfiguration port];
+    std::string *portname = new std::string([NSportname UTF8String]);
+    m_com.setPort(*portname);*/
+    std::string portname = "usbmodem1411";
     m_com.setPort(portname);
     m_com.setBaudrate(115200);
     m_com.setTimeout(to);
     m_com.open();
     m_x3gsi = [[X3gStreamInterface alloc] init:&m_com :m_x3gsp];
-    return 0;
+    return self;
 }
 
 -(void)on_btnX3gFileOpen_clicked

@@ -64,18 +64,20 @@ unsigned short qchar2value(Byte ch)
 }
 
 
--(void)CUserTimer
+-(id)init
 {
     m_interval = 0.0;
     m_tmrstart = 0.0;
     m_tmrcurrent = 0.0;
+    return self;
 }
 
--(void)CUserTimer:(double) intervalms
+-(id)init:(double) intervalms
 {
     m_tmrstart = 0.0;
     m_tmrcurrent = 0.0;
     [self setinterval:intervalms];
+    return self;
 }
 
 //CUserTimer::~CUserTimer() {}

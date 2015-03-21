@@ -10,6 +10,7 @@
 #import "serial.h"
 #import "x3gstreamparser.h"
 #import "x3gstreamprocess.h"
+#import "PrinterConfiguration.h"
 
 @interface Printer_connection : NSObject {
     int m_cmdcount;

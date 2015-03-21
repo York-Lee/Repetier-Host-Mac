@@ -3,13 +3,14 @@
 
 @implementation CPacketProcessor
 
--(void)CPacketProcessor
+-(id)init
 {
     m_packstat = START;
     m_pllen = -1;
     m_plidx = 0;
     m_payload = NULL;
     m_targetcrc = 0;
+    return self;
 }
 
 /*CPacketProcessor::~CPacketProcessor()

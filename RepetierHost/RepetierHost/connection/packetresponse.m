@@ -11,10 +11,10 @@
     m_rdpos = 1;
     m_pllen = 0;
     m_payload = NULL;
-    return 0;
+    return self;
 }
 
--(void)CPacketResponse:(NSData* const) payload
+-(id)CPacketResponse:(NSData* const) payload
 {
     m_rdpos = 1;
     m_pllen = 0;
@@ -24,6 +24,7 @@
         m_payload = (int8_t*)malloc(m_pllen);// new quint8[m_pllen];
         memcpy(m_payload, [payload bytes], m_pllen);
     }
+    return self;
 }
 
 -(id)init:(int8_t* const) payload :(int) len
@@ -36,7 +37,7 @@
         m_payload = (int8_t*)malloc(len);//new quint8[len];
         memcpy(m_payload, payload, len);
     }
-    return 0;
+    return self;
 }
 
 -(id)init:(CPacketResponse* const) s
@@ -47,7 +48,7 @@
         m_payload = (int8_t*)malloc(m_pllen);
         memcpy(m_payload, s->m_payload, m_pllen);
     }
-    return 0;
+    return self;
 }
 
 /*CPacketResponse& CPacketResponse::operator=( const CPacketResponse& s )

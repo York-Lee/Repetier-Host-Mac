@@ -10,7 +10,7 @@
 -(id)init
 {
     assert(0);
-    return 0;
+    return self;
 }
 
 -(id)init:(S3gCmdFormat* const) val
@@ -18,7 +18,7 @@
     m_cmd = val->m_cmd; m_parlen = val->m_parlen;
     m_subcmd = val->m_subcmd; m_subcmdpos = val->m_subcmdpos;
     m_bparstring = val->m_bparstring;
-    return 0;
+    return self;
 }
 
 -(id)init:(int)Cmd :(int)Parlen :(int)Subcmd :(int)SubcmdPos :(bool)HasString
@@ -26,7 +26,7 @@
     m_cmd = Cmd; m_parlen = Parlen;
     m_subcmd = Subcmd; m_subcmdpos = SubcmdPos;
     m_bparstring = HasString;
-    return 0;
+    return self;
 }
 
 //S3gCmdFormat::~S3gCmdFormat(){}

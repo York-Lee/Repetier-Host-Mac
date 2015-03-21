@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, ResponseCode) {
 @property int8_t* m_payload;
 
 -(id)init;
--(void)CPacketResponse:(NSData* const) payload;
+-(id)CPacketResponse:(NSData* const) payload;
 -(id)init:(int8_t* const) payload :(int)len;
 -(id)init:(CPacketResponse* const) s;
 //-(void)CPacketResponse& operator=(const CPacketResponse& s);

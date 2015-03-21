@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, PacketState)
     int m_pllen;
     int8_t* m_payload;
 }
--(void)CPacketProcessor;
+-(id)init;
 //~CPacketProcessor();
 -(void)reset;
 -(CPacketResponse*)getResponse;

@@ -6,7 +6,7 @@
 -(id)init
 {
     assert(0);
-    return 0;
+    return self;
 }
 
 //CPacketBuilder::~CPacketBuilder() {}
@@ -17,7 +17,7 @@
     m_data[0] = START_BYTE;
     // data[1] = length; // just to avoid confusion
     [self add8:(int8_t)command];
-    return 0;
+    return self;
 }
 
 -(void)add8:(int) v

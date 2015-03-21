@@ -87,7 +87,7 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
     receiveData = [NSMutableString init];
     [m_tmr1 setinterval:500];
     [m_tmr2 setinterval:200];
-    return 0;
+    return self;
 }
 
 -(id)init:(serial::Serial*)pCom :(CX3gStreamParser*) pParser
@@ -102,7 +102,7 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
     m_x3gsp = pParser;
     [m_tmr1 setinterval:500];
     [m_tmr2 setinterval:200];
-    return 0;
+    return self;
 }
 
 - (void)serialPort:(serial::Serial*)serialPort didReceiveData:(NSData *)data

@@ -14,8 +14,8 @@ unsigned short qchar2value(Byte ch);
     double m_tmrstart;
     double m_tmrcurrent;
 }
--(void)CUserTimer;
--(void)CUserTimer:(double) intervalms;
+-(id)init;
+-(id)init:(double) intervalms;
 //~CUserTimer();
 -(void)reset;
 -(void)setinterval:(double) intervalms;
