@@ -31,18 +31,23 @@
 
 //S3gCmdFormat::~S3gCmdFormat(){}
 
--(CPacketBuilder*)tryparse:(int8_t*) stream :(int) pos1 :(int) pos2 :(int*) nextpos
+-(CPacketBuilder*)tryparse:(uint8_t*) stream :(int) pos1 :(int) pos2 :(int*) nextpos
 {
     *nextpos = pos1;
+    NSLog(@"%d,%d", stream[pos1], m_cmd);
 
     if ( (pos1+m_parlen+1) > pos2 || stream[pos1] != m_cmd ) return NULL;
     if ( m_subcmd >= 0 && m_subcmd != stream[pos1+m_subcmdpos] ) return NULL;
 
     int i = pos1 + 1;
     *nextpos = i + m_parlen;
+    NSLog(@"nextpos:%d", *nextpos);
+    NSLog(@"parlen:%d", m_parlen);
     CPacketBuilder* pb = [[CPacketBuilder alloc] init:m_cmd];//new CPacketBuilder((MotherboardCommandCode::MotherboardCommandCode)m_cmd);
+    //NSLog(@"Nextpos:%d", *nextpos);
     for ( ; i < *nextpos; i++ )
         [pb add8:stream[i]];
+    //NSLog(@"%d", *nextpos);
 
     if ( true == m_bparstring ) {
         while ( *nextpos < pos2 && 0 != stream[*nextpos] ) (*nextpos)++;
@@ -148,12 +153,14 @@ static TPattenList glstPatten[] = {
 static const int m_buffsize = 1024 * 64;
 static const int m_bufflentoparse = 1024;
 
--(void)CX3gStreamParser
+-(id)init
 {
     m_buffpos = 0; m_bufflen = 0;
     m_buffer = (int8_t*)malloc(m_buffsize);//new quint8[m_buffsize];
+    m_pattens = [[NSMutableArray alloc] initWithObjects:nil];
+    condition = [[NSCondition alloc] init];
 
-    S3gCmdFormat* ps3g;
+    S3gCmdFormat* ps3g;// = [[S3gCmdFormat alloc] init];
     for ( int i = 0; i < PATTENLIST_LENGTH; i++ ) {
         ps3g = [[S3gCmdFormat alloc] init:glstPatten[i].cmd :glstPatten[i].parlen :glstPatten[i].subcmd :glstPatten[i].subcmdpos :glstPatten[i].hasstring];//new S3gCmdFormat(glstPatten[i].cmd, glstPatten[i].parlen, glstPatten[i].subcmd, glstPatten[i].subcmdpos, glstPatten[i].hasstring);
         [m_pattens addObject:ps3g];//.append(ps3g);
@@ -161,6 +168,7 @@ static const int m_bufflentoparse = 1024;
 
     m_cmdstatistic = (int*)malloc(PATTENLIST_LENGTH);//new int[PATTENLIST_LENGTH];
     [self statisticreset];
+    return self;
 }
 
 /*CX3gStreamParser::~CX3gStreamParser()
@@ -177,6 +185,11 @@ static const int m_bufflentoparse = 1024;
     }
 }*/
 
+-(NSString*)getfile
+{
+    return m_file;
+}
+
 -(bool)open:(NSString*) strFile
 {
     /*if ( m_file.isOpen() ) m_file.close();
@@ -185,18 +198,30 @@ static const int m_bufflentoparse = 1024;
     m_file.setFileName(strFile);
     bool berr = m_file.open(QIODevice::ReadOnly);
     if ( false == berr ) {
-        //qDebug() << "CX3gStreamParser::open() fail. file: " << strFile << "\n";
+        NSLog(@) << "CX3gStreamParser::open() fail. file: " << strFile << "\n";
         return false;
     }
 
     return true;*/
     m_file = strFile;
     NSFileManager *filemgr = [NSFileManager defaultManager];
+    //NSLog(m_file);
     if ([filemgr fileExistsAtPath:m_file])
     {
-        fileHandle = [NSFileHandle fileHandleForReadingAtPath:m_file];
+        @try {
+            [fileHandle closeFile];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Close Exeception:%@", exception);
+        }
+        @finally {
+            fileHandle = [NSFileHandle fileHandleForReadingAtPath:m_file];
+        }
+        
+        //fileHandle = [NSFileHandle fileHandleForReadingAtPath:m_file];
+        return true;
     }
-    return true;
+    return false;
 }
 
 -(bool)isopen
@@ -225,17 +250,25 @@ static const int m_bufflentoparse = 1024;
 -(void)statisticdbgprint
 {
     for ( int i = 0; i < PATTENLIST_LENGTH; i++ ) {
-        //qDebug("command:%02x, statistic:%d", glstPatten[i].cmd, m_cmdstatistic[i]);
+        NSLog(@"command:%02x, statistic:%d", glstPatten[i].cmd, m_cmdstatistic[i]);
     }
 }
 
 -(CPacketBuilder*)getnext
 {
+    //NSLog(@"%d", [fileHandle fileDescriptor]);
     NSFileManager *filemgr = [NSFileManager defaultManager];
     if (![filemgr fileExistsAtPath:m_file]) return NULL;
+    NSFileHandle *tmp_m_file = [NSFileHandle fileHandleForReadingAtPath:m_file];
+    unsigned long long eof = [tmp_m_file seekToEndOfFile];
+    NSLog(@"OffsetinFile: %llu", [fileHandle offsetInFile]);
+    NSLog(@"endoffile: %llu", eof);
+    if ([fileHandle offsetInFile] == eof && m_bufflen <= 0 ) {
+        return NULL;
+    }
     //if ( false == m_file.isOpen() ) return NULL;
     /*if ( m_file.atEnd() && m_bufflen <= 0 ) {
-        //qDebug("S3gParser--end of file<%d, %d, %lld>", m_buffpos, m_bufflen, m_file.pos());
+        NSLog(@"S3gParser--end of file<%d, %d, %lld>", m_buffpos, m_bufflen, m_file.pos());
         return NULL;
     }*/
 
@@ -250,17 +283,18 @@ static const int m_bufflentoparse = 1024;
     if ( m_bufflen < m_bufflentoparse ) {
         int pos = m_buffpos + m_bufflen;
         NSData * dataread = [fileHandle readDataOfLength:m_buffsize-pos];
-        int cnt = [dataread length];
-        char* m_buffer_tmp = (char*)(m_buffer + pos);
-        m_buffer_tmp = (char*)[dataread bytes];
+        int cnt = (int)[dataread length];
+        //[fileHandle seekToFileOffset:[fileHandle offsetInFile] + cnt];
+        memcpy(m_buffer + pos, [dataread bytes], cnt);
+        NSLog(@"Buffer_first: %hhu",m_buffer[0]);
         //int cnt = m_file.read((char*)(m_buffer+pos), m_buffsize-pos);
         m_bufflen += cnt;
     }
 
-    int i, *nextpos = 0;
+    int i, nextpos = 0;
     CPacketBuilder* pb = NULL;
     for ( i = 0; i < [m_pattens count]; i++ ) {
-        pb = [(S3gCmdFormat*)[m_pattens objectAtIndex:i] tryparse:m_buffer :m_buffpos :m_buffpos+m_bufflen :nextpos]; //tryparse(m_buffer, m_buffpos, m_buffpos + m_bufflen, nextpos)];
+        pb = [(S3gCmdFormat*)[m_pattens objectAtIndex:i] tryparse:m_buffer :m_buffpos :m_buffpos+m_bufflen :&nextpos]; //tryparse(m_buffer, m_buffpos, m_buffpos + m_bufflen, nextpos)];
         if ( NULL != pb ) {
             m_cmdstatistic[i]++;
             break;
@@ -268,23 +302,23 @@ static const int m_bufflentoparse = 1024;
     }
 
     if ( NULL == pb ) {
-        //qDebug("pb null. <%d, %d, %lld>:", m_buffpos, m_bufflen, m_file.pos());
+        //NSLog(@"pb null. <@d, @d, @lld>:", m_buffpos, m_bufflen, m_file.pos());
         assert(0);
         return NULL;
     }
 
-    assert( *nextpos > m_buffpos && *nextpos <= m_buffsize );
-    m_bufflen -= *nextpos - m_buffpos;
-    m_buffpos = *nextpos;
+    assert( nextpos > m_buffpos && nextpos <= m_buffsize );
+    m_bufflen -= nextpos - m_buffpos;
+    m_buffpos = nextpos;
     return pb;
 }
 
 +(int)getcount:(NSString*) strfile
 {
-    CX3gStreamParser *x3gsp;
+    CX3gStreamParser *x3gsp = [[CX3gStreamParser alloc] init];
     [x3gsp open:strfile];
-    if ( [x3gsp isopen] ) {
-        //qDebug("getcount--open file fail.");
+    if ( ![x3gsp isopen] ) {
+        NSLog(@"getcount--open file fail.");
         return 0;
     }
 
@@ -303,8 +337,8 @@ static const int m_bufflentoparse = 1024;
     //int tm1ms = tm1.elapsed();
     NSTimeInterval timeInterval = [start timeIntervalSinceNow];
     NSUInteger timeInt = timeInterval;
-    //qDebug("number of commands:%d", count);
-    //qDebug("time for parsing:%ds:%dms", timeInt, timeInterval - timeInt);
+    NSLog(@"number of commands:%d", count);
+    //NSLog(@"time for parsing:%ds:%dms", timeInt, timeInterval - timeInt);
     //x3gsp.statisticdbgprint();
 
     return count;

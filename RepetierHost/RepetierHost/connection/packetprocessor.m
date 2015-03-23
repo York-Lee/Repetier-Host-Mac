@@ -65,7 +65,7 @@
         break;
 
     case LEN:
-        //qDebug("Length: %d", b);
+        NSLog(@"Length: %d", b);
         m_pllen = ((int)b) & 0xFF;
         m_payload = (int8_t*)(m_pllen);
         [m_crc reset];
@@ -84,7 +84,7 @@
 
     case CRC:
         m_targetcrc = b;
-        //qDebug("Target CRC: %02x - expected CRC: %02x", m_targetcrc, m_crc.getcrc());
+        //NSLog(@"Target CRC: %02x - expected CRC: %02x", m_targetcrc, m_crc.getcrc());
         if ([m_crc getcrc] != m_targetcrc ) {
             assert(0);
             return false;

@@ -91,7 +91,7 @@
 -(int)get8
 {
     if ( NULL == m_payload || m_pllen <= m_rdpos ) {
-        //qDebug() << "Error: payload null or not big enough.";
+        NSLog(@"Error: payload null or not big enough.");
         return 0;
     }
 

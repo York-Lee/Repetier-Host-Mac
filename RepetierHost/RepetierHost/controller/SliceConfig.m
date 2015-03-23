@@ -7,6 +7,7 @@
 //
 
 #import "SliceConfig.h"
+#import "PrinterConfiguration.h"
 
 @interface SliceConfig ()
 
@@ -69,84 +70,83 @@ void runSystemCommand(NSString *cmd)
     /*machineType = [[printerType objectValueOfSelectedItem] lowercaseString];//machineType_ComboBox.SelectedItem.ToString().ToLower();
     if ([machineType containsString:@"smart-225p"] && [[extruder objectValueOfSelectedItem] containsString:@"L_R_EXTRUDER"])
     {
-        Main.printerModel.Slic3rPrint = [single_r225_config objectAtIndex:0];
-        Main.printerModel.Slic3rFilament1 = [single_r225_config objectAtIndex:1];
-        Main.printerModel.Slic3rPrinter = [single_r225_config objectAtIndex:2];
+        currentPrinterConfiguration.Slic3rPrint = [single_r225_config objectAtIndex:0];
+        currentPrinterConfiguration.Slic3rFilament1 = [single_r225_config objectAtIndex:1];
+        currentPrinterConfiguration.Slic3rPrinter = [single_r225_config objectAtIndex:2];
         machine = MachineType.SMART225P;
     }
-    if (machineType.IndexOf("smart-225p") >= 0 && extruderCBox.Text ==
-        Trans.IdTranslation("L_L_EXTRUDER"))
+    if ([machineType containsString:@"smart-225p"] && [[extruder objectValueOfSelectedItem] containsString:@"L_L_EXTRUDER"])
     {
-        Main.printerModel.Slic3rPrint = [single_l225_config objectAtIndex:0];
-        Main.printerModel.Slic3rFilament1 = [single_l225_config objectAtIndex:1];
-        Main.printerModel.Slic3rPrinter = [single_l225_config objectAtIndex:2];
+        currentPrinterConfiguration.Slic3rPrint = [single_l225_config objectAtIndex:0];
+        currentPrinterConfiguration.Slic3rFilament1 = [single_l225_config objectAtIndex:1];
+        currentPrinterConfiguration.Slic3rPrinter = [single_l225_config objectAtIndex:2];
         machine = MachineType.SMART225P;
     }
-    if (machineType.IndexOf("smart-300m") >= 0 && extruderCBox.Text ==
-        Trans.IdTranslation("L_R_EXTRUDER"))
+    if ([machineType containsString:@"smart-300m"] && [[extruder objectValueOfSelectedItem] containsString:@"L_R_EXTRUDER"])
     {
-        Main.printerModel.Slic3rPrint = [single_r300_config objectAtIndex:0];
-        Main.printerModel.Slic3rFilament1 = [single_r300_config objectAtIndex:1];
-        Main.printerModel.Slic3rPrinter = [single_r300_config objectAtIndex:2];
+        currentPrinterConfiguration.Slic3rPrint = [single_r300_config objectAtIndex:0];
+        currentPrinterConfiguration.Slic3rFilament1 = [single_r300_config objectAtIndex:1];
+        currentPrinterConfiguration.Slic3rPrinter = [single_r300_config objectAtIndex:2];
         machine = MachineType.SMART300M;
     }
-    if (machineType.IndexOf("smart-300m") >= 0 && extruderCBox.Text ==
-        Trans.IdTranslation("L_L_EXTRUDER"))
+    if ([machineType containsString:@"smart-300m"] && [[extruder objectValueOfSelectedItem] containsString:@"L_L_EXTRUDER"])
     {
-        Main.printerModel.Slic3rPrint = [single_l300_config objectAtIndex:0];
-        Main.printerModel.Slic3rFilament1 = [single_l300_config objectAtIndex:1];
-        Main.printerModel.Slic3rPrinter = [single_l300_config objectAtIndex:2];
+        currentPrinterConfiguration.Slic3rPrint = [single_l300_config objectAtIndex:0];
+        currentPrinterConfiguration.Slic3rFilament1 = [single_l300_config objectAtIndex:1];
+        currentPrinterConfiguration.Slic3rPrinter = [single_l300_config objectAtIndex:2];
         machine = MachineType.SMART300M;
     }
-    if (machineType.IndexOf("smart-225p") >= 0 && extruderCBox.Text ==
-        Trans.IdTranslation("L_DUAL_EXTRUDER"))
+    if ([machineType containsString:@"smart-225p"] && [[extruder objectValueOfSelectedItem] containsString:@"L_DUAL_EXTRUDER"])
     {
-        Main.printerModel.Slic3rPrint = [dual_225_config objectAtIndex:0];
-        Main.printerModel.Slic3rFilament1 = [dual_225_config objectAtIndex:1];
-        Main.printerModel.Slic3rFilament2 = [dual_225_config objectAtIndex:2];
+        currentPrinterConfiguration.Slic3rPrint = [dual_225_config objectAtIndex:0];
+        currentPrinterConfiguration.Slic3rFilament1 = [dual_225_config objectAtIndex:1];
+        currentPrinterConfiguration.Slic3rFilament2 = [dual_225_config objectAtIndex:2];
         Main.printerModel.Slic3rPrinter = [dual_225_config objectAtIndex:3];
         machine = MachineType.SMART225P;
     }
-    if (machineType.IndexOf("smart-300m") >= 0 && extruderCBox.Text ==
-        Trans.IdTranslation("L_DUAL_EXTRUDER"))
+    if ([machineType containsString:@"smart-300m"] && [[extruder objectValueOfSelectedItem] containsString:@"L_DUAL_EXTRUDER"])
     {
-        Main.printerModel.Slic3rPrint = [dual_300_config objectAtIndex:0];
-        Main.printerModel.Slic3rFilament1 = [dual_300_config objectAtIndex:1];
-        Main.printerModel.Slic3rFilament2 = [dual_300_config objectAtIndex:2];
-        Main.printerModel.Slic3rPrinter = [dual_300_config objectAtIndex:3];
+        currentPrinterConfiguration.Slic3rPrint = [dual_300_config objectAtIndex:0];
+        currentPrinterConfiguration.Slic3rFilament1 = [dual_300_config objectAtIndex:1];
+        currentPrinterConfiguration.Slic3rFilament2 = [dual_300_config objectAtIndex:2];
+        currentPrinterConfiguration.Slic3rPrinter = [dual_300_config objectAtIndex:3];
         machine = MachineType.SMART300M;
     }
-    if (machineType.IndexOf("lapple") >= 0 && extruderCBox.Text ==
-        Trans.IdTranslation("L_R_EXTRUDER"))
+    if ([machineType containsString:@"lapple"] && [[extruder objectValueOfSelectedItem] containsString:@"L_R_EXTRUDER"])
     {
-        Main.printerModel.Slic3rPrint = [lapple_config objectAtIndex:0];
-        Main.printerModel.Slic3rFilament1 = [lapple_config objectAtIndex:1];
-        Main.printerModel.Slic3rPrinter = [lapple_config objectAtIndex:2];
+        currentPrinterConfiguration.Slic3rPrint = [lapple_config objectAtIndex:0];
+        currentPrinterConfiguration.Slic3rFilament1 = [lapple_config objectAtIndex:1];
+        currentPrinterConfiguration.Slic3rPrinter = [lapple_config objectAtIndex:2];
         machine = MachineType.LAPPLE100;
     }*/
+}
+
+-(IBAction)extruderBoxClicked:(id) sender
+{
+    [self Select_Extruder];
 }
 
 -(void)Select_Extruder
 {
     //parameterTabControl.SelectedIndex = 1;
-    if ([[extruder objectValueOfSelectedItem] containsString:@"L_R_EXTRUDER"])
+    if ([[extruder objectValueOfSelectedItem] containsString:@"Left"])//@"L_R_EXTRUDER"])
     {
         // supportCBox.Text = extruderCBox.Text;
-        [rightExtruderTemperature setEnabled:true];
-        //rightLbl.Enabled = true;
-        [leftExtruderTemperature setEnabled:true];
-        //leftLbl.Enabled = false;
-        //Main.conn.numberExtruder = 1;
-    }
-    if ([[extruder objectValueOfSelectedItem] containsString:@"L_L_EXTRUDER"])
-    {
-        //Main.conn.numberExtruder = 1;
         [rightExtruderTemperature setEnabled:false];
         //rightLbl.Enabled = false;
         [leftExtruderTemperature setEnabled:true];
         //leftLbl.Enabled = true;
+        //Main.conn.numberExtruder = 1;
     }
-    if ([[extruder objectValueOfSelectedItem] containsString:@"L_DUAL_EXTRUDER"])
+    if ([[extruder objectValueOfSelectedItem] containsString:@"Right"])//@"L_L_EXTRUDER"])
+    {
+        //Main.conn.numberExtruder = 1;
+        [rightExtruderTemperature setEnabled:true];
+        //rightLbl.Enabled = true;
+        [leftExtruderTemperature setEnabled:false];
+        //leftLbl.Enabled = false;
+    }
+    if ([[extruder objectValueOfSelectedItem] containsString:@"Dual"])//@"L_DUAL_EXTRUDER"])
     {
         [rightExtruderTemperature setEnabled:true];
         //rightLbl.Enabled = true;

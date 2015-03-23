@@ -14,9 +14,9 @@
 #import "packetresponse.h"
 #import "packetprocessor.h"
 #import "x3gstreamparser.h"
-//#import "ORSSerialPort.h"
+#import "ORSSerialPort.h"
 #import "motherboardcommandcode.h"
-#import "serial.h"
+//#import "serial.h"
 //#include "../serial/include/serial.h"
 
 /*using std::string;
@@ -24,7 +24,7 @@ using std::exception;
 using std::vector;
 typedef QQueue<CPacketResponse> TQPacketResponse;*/
 
-CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder* const pb, int ms, NSMutableString *receiveData);
+CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder* const pb, int ms);
 
 typedef NS_ENUM(NSUInteger, BotBuildStat)
 {
@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, BotBuildStat)
     BUILD_STAT_MAX
 };
 
-@interface X3gStreamInterface : NSThread
+@interface X3gStreamInterface : NSObject <ORSSerialPortDelegate>
 {
     //Q_OBJECT
     volatile bool m_brunning;
@@ -45,9 +45,9 @@ typedef NS_ENUM(NSUInteger, BotBuildStat)
     volatile BotBuildStat m_botstate;
     CUserTimer *m_tmr1, *m_tmr2;
     //ORSSerialPort *m_com;//serial::Serial* m_com;
-    serial::Serial* m_com;
+    ORSSerialPort* m_com;
     CX3gStreamParser* m_x3gsp;
-    NSMutableString *receiveData;
+    //NSMutableString *receiveData;
     NSData *m_data;//QByteArray m_data;
     NSLock* m_mutex;// = GetArrayLock();
     //QMutex m_mutex;
@@ -64,10 +64,11 @@ typedef NS_ENUM(NSUInteger, BotBuildStat)
 }
 
 -(id)init;
--(id)init:(serial::Serial*) pCom :(CX3gStreamParser*) pParser;
+-(id)init:(ORSSerialPort*) pCom :(CX3gStreamParser**) pParser;
+-(void)setupinit:(ORSSerialPort*)pCom :(CX3gStreamParser**) pParser;
 //~X3gStreamInterface();
 
--(void)initial:(serial::Serial*) pCom :(CX3gStreamParser*) pParser;
+-(void)initial:(ORSSerialPort*) pCom :(CX3gStreamParser*) pParser;
 -(void)setrunflag:(bool) brun;
 -(CPacketResponse*)runcommand_lock:(CPacketBuilder* const) pb :(int) ms;
 -(bool)startbuild;
@@ -88,5 +89,7 @@ typedef NS_ENUM(NSUInteger, BotBuildStat)
 };*/
 
 @end
+
+extern NSMutableString *receivePortData;
 
 #endif // X3GSTREAMPROCESS_H

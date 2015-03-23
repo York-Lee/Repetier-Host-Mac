@@ -12,16 +12,25 @@
 
 -(id) init
 {
-    serial::Timeout to = serial::Timeout::simpleTimeout(500);
-    /*NSString* NSportname = [currentPrinterConfiguration port];
+    ORSSerialPort *serialPort = [ORSSerialPort serialPortWithPath:@"/dev/cu.usbmodem1411"];
+    serialPort.baudRate = @115200;
+    [serialPort open];
+    //[serialPort sendData:someData]; // someData is an NSData object
+    [serialPort close];
+    /*serial::Timeout to = serial::Timeout::simpleTimeout(500);
+    NSString* NSportname = [currentPrinterConfiguration port];
     std::string *portname = new std::string([NSportname UTF8String]);
-    m_com.setPort(*portname);*/
-    std::string portname = "usbmodem1411";
-    m_com.setPort(portname);
+    m_com.setPort(*portname);
     m_com.setBaudrate(115200);
     m_com.setTimeout(to);
-    m_com.open();
-    m_x3gsi = [[X3gStreamInterface alloc] init:&m_com :m_x3gsp];
+    m_com.open();*/
+    NSLog(@"Init x3gsi, x3gsp");
+    m_x3gsp = [[CX3gStreamParser alloc] init];
+    //m_x3gsi = [[X3gStreamInterface alloc] initWithTarget:[X3gStreamInterface class] selector:@selector(run:) object:nil];
+    //[m_x3gsi setupinit:serialPort :&m_x3gsp];
+    m_x3gsi = [[X3gStreamInterface alloc] init:serialPort :&m_x3gsp];
+    NSLog(@"set filename");
+    m_strfile = @"/Users/liyingkai/Desktop/leveling-150x150.x3g";
     return self;
 }
 
@@ -45,11 +54,13 @@
      
      m_strfile = fd.selectedFiles().at(0).toLocal8Bit().constData();*/
     
+    NSLog(@"get count");
     m_cmdcount = [CX3gStreamParser getcount:m_strfile];
     if ( m_cmdcount <= 0 ) {
-        //qDebug("x3g stream parser open file fail");
+        NSLog(@"x3g stream parser open file fail");
         return;
     }
+    NSLog(@"number of commands:%d", m_cmdcount);
     
     /*ui->edtFileName->setText(m_strfile);
      buttonstatusupdate();*/
@@ -57,14 +68,18 @@
 
 -(void)on_btnX3gFileStart_clicked
 {
+    NSLog(@"Started");
     if ( BUILD_STAT_NONE == m_stat ||
         BUILD_STAT_CANCELED == m_stat ||
         BUILD_STAT_FINISHED_NORMALLY == m_stat )
     {
+        NSLog(@"Open");
         [m_x3gsp open:m_strfile];
         [m_x3gsi setrunflag:true];
+        //[NSThread detachNewThreadSelector:@selector(run) toTarget:[m_x3gsi class] withObject:nil];
         [m_x3gsi startbuild];
-        [m_x3gsi start];
+        //[m_x3gsi start];
+        //[m_x3gsi run];//[m_x3gsi start];
     }
     else {
         /*m_x3gsi->setrunflag(false);
@@ -94,36 +109,36 @@
     {
         case BUILD_STAT_FINISHED_NORMALLY:
             [m_x3gsi setrunflag:false];
-            /*[m_x3gsi wait];*/[m_x3gsp close];
+            [m_x3gsi wait];[m_x3gsp close];
             //buttonstatusupdate();
-            //qDebug("slotbotstateupdate: finished normally...");
+            NSLog(@"slotbotstateupdate: finished normally...");
             break;
             
         case BUILD_STAT_CANCELED:
             [m_x3gsi setrunflag:false];
-            /*[m_x3gsi wait];*/[m_x3gsp close];
+            [m_x3gsi wait];[m_x3gsp close];
             //buttonstatusupdate();
-            //qDebug("slotbotstateupdate: canceled...");
+            NSLog(@"slotbotstateupdate: canceled...");
             break;
             
         case BUILD_STAT_CANNELLING:
-            //qDebug("slotbotstateupdate: canelling...");
+            NSLog(@"slotbotstateupdate: canelling...");
             break;
             
         case BUILD_STAT_PAUSED:
             //buttonstatusupdate();
-            //qDebug("slotbotstateupdate: paused...");
+            NSLog(@"slotbotstateupdate: paused...");
             break;
             
         case BUILD_STAT_RUNNING:
             //buttonstatusupdate();
-            //qDebug("slotbotstateupdate: running...");
+            NSLog(@"slotbotstateupdate: running...");
             break;
             
         case BUILD_STAT_NONE:
             // TODO: should not update buttons status here
             // buttonstatusupdate();
-            //qDebug() << "slotbotstateupdate: build state none???";
+            NSLog(@"slotbotstateupdate: build state none???");
             break;
     }
 }

@@ -47,5 +47,6 @@
 
 - (IBAction)sliceButtonHit:(id)sender;
 - (IBAction)killSliceButtonHit:(id)sender;
+- (IBAction)extruderBoxClicked:(id) sender;
 
 @end

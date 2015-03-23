@@ -18,7 +18,7 @@
 -(id)init:(S3gCmdFormat* const) val;
 //~S3gCmdFormat();
 -(id)init:(int) Cmd :(int) Parlen :(int) Subcmd :(int) SubcmdPos :(bool) HasString;// = false;
--(CPacketBuilder*)tryparse:(int8_t*)stream :(int)pos1 :(int)pos2 :(int*) nextpos;
+-(CPacketBuilder*)tryparse:(uint8_t*)stream :(int)pos1 :(int)pos2 :(int*) nextpos;
 @end
 
 @interface CX3gStreamParser : NSObject {
@@ -28,8 +28,9 @@
     int8_t* m_buffer;
     NSString *m_file;
     NSFileHandle *fileHandle;
+    NSCondition *condition;
 }
--(void)CX3gStreamParser;
+-(id)init;
 //~CX3gStreamParser();
 -(bool)open:(NSString*) strFile;
 -(bool)isopen;
@@ -37,6 +38,7 @@
 -(void)statisticreset;
 -(void)statisticdbgprint;
 -(CPacketBuilder*) getnext;
+-(NSString*)getfile;
 +(int)getcount:(NSString*) strfile;
 @end
 

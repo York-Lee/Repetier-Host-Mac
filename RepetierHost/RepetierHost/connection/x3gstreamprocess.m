@@ -2,9 +2,9 @@
 //#include "tools.h"
 //#include <QDebug>
 
-CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * const pb, int ms, NSMutableString *receiveData )
+CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * const pb, int ms )
 {
-    if ( !pb || ms <= 0 || !pcom || !pcom->isOpen() )
+    if ( !pb || ms <= 0 || !pcom || ![pcom isOpen] )
         return [CPacketResponse timeoutResponse];
 
     int i, len, packlen, accupos;
@@ -13,18 +13,18 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
     NSData* ba1;
     uint8_t buff[100];
 
-    //[receiveData setString:@""];
+    [receivePortData setString:@""];
     ba1 = [pb getPacket];
-    len = pcom->write((uint8_t*)[ba1 bytes], [ba1 length]);
-    assert( len == [ba1 length] );
+    [pcom sendData:ba1];//len = pcom->write((uint8_t*)[ba1 bytes], [ba1 length]);
+    //assert( len == [ba1 length] );
 
-    /*[NSThread sleepForTimeInterval:1];
-    if ([receiveData length] < 2)
+    [NSThread sleepForTimeInterval:1];
+    if ([receivePortData length] < 2)
     {
         return [CPacketResponse timeoutResponse];
     }
-    buff[0] = [receiveData characterAtIndex:0];
-    buff[1] = [receiveData characterAtIndex:1];
+    buff[0] = [receivePortData characterAtIndex:0];
+    buff[1] = [receivePortData characterAtIndex:1];
     accupos = 2;
     
     packlen = buff[1] + 3;
@@ -32,13 +32,13 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
     // read payload and checksum
     for ( i = 0; i < ms && accupos < packlen; i++ ) {
         len = 1;
-        buff[accupos] = [receiveData characterAtIndex:accupos];
+        buff[accupos] = [receivePortData characterAtIndex:accupos];
         //len = pcom->read(buff+accupos, packlen-accupos);
         accupos += len;
     }
-    [receiveData setString:@""];*/
+    receivePortData = [NSMutableString stringWithString:[receivePortData substringFromIndex:accupos]];// setString:@""];
     // read first two bytes:<0xd5 payloadlength>
-    for ( i = accupos = 0; i < 2 && accupos < 2; i++ ) {
+    /*for ( i = accupos = 0; i < 2 && accupos < 2; i++ ) {
         len = pcom->read(buff+accupos, 2-accupos);
         accupos += len;
     }
@@ -59,7 +59,7 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
         assert( false == complete );
         int8_t u8 = (int8_t)buff[i];
         complete = [pp processByte:u8];
-    }
+    }*/
 
     //if ( complete ) {
     //    QByteArray ba; ba.resize(packlen);
@@ -84,43 +84,57 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
     m_biscomconn = false;
     m_botstate = BUILD_STAT_NONE;
     m_com = NULL; m_x3gsp = NULL;
-    receiveData = [NSMutableString init];
+    //receivePortData = [[NSMutableString alloc] initWithString:@""];
     [m_tmr1 setinterval:500];
     [m_tmr2 setinterval:200];
     return self;
 }
 
--(id)init:(serial::Serial*)pCom :(CX3gStreamParser*) pParser
+-(id)init:(ORSSerialPort*)pCom :(CX3gStreamParser**) pParser
 {
     m_brunning = false;
     m_biscomconn = false;
     m_botstate = BUILD_STAT_NONE;
     m_com = NULL; m_x3gsp = NULL;
-    receiveData = [NSMutableString init];
+    //receivePortData = [[NSMutableString alloc] initWithString:@""];
     //initial(pCom, pParser);
     m_com = pCom;
-    m_x3gsp = pParser;
+    m_x3gsp = *pParser;
     [m_tmr1 setinterval:500];
     [m_tmr2 setinterval:200];
     return self;
 }
 
-- (void)serialPort:(serial::Serial*)serialPort didReceiveData:(NSData *)data
+-(void)setupinit:(ORSSerialPort*)pCom :(CX3gStreamParser**) pParser
+{
+    m_brunning = false;
+    m_biscomconn = false;
+    m_botstate = BUILD_STAT_NONE;
+    m_com = NULL; m_x3gsp = NULL;
+    //receivePortData = [[NSMutableString alloc] initWithString:@""];
+    //initial(pCom, pParser);
+    m_com = pCom;
+    m_x3gsp = *pParser;
+    [m_tmr1 setinterval:500];
+    [m_tmr2 setinterval:200];
+}
+
+- (void)serialPort:(ORSSerialPort*)serialPort didReceiveData:(NSData *)data
 {
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if ([string length] == 0) return;
-    [receiveData appendString:string];
+    [receivePortData appendString:string];
     //[self.receivedDataTextView.textStorage.mutableString appendString:string];
     //[self.receivedDataTextView setNeedsDisplay:YES];
 }
 
 //X3gStreamInterface::~X3gStreamInterface() {}
 
--(void)initial:(serial::Serial*) pCom :(CX3gStreamParser*) pParser
+-(void)initial:(ORSSerialPort*) pCom :(CX3gStreamParser*) pParser
 {
     assert( pCom && pParser && ![self isExecuting] );
     if ( m_x3gsp && [m_x3gsp isopen] ) {
-        //qDebug("warning: file is already open.");
+        NSLog(@"warning: file is already open.");
         assert(0);
     }
     m_com = pCom;
@@ -136,16 +150,16 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
 {
     CPacketResponse *pr;
     [m_mutex lock];
-    pr = runcommandtool(m_com, pb, ms, receiveData);
+    pr = runcommandtool(m_com, pb, ms);
     [m_mutex unlock];
     return pr;
 }
 
 -(bool)startbuild
 {
-    assert( ![self isExecuting] &&
-              m_botstate != BUILD_STAT_RUNNING &&
-              m_botstate != BUILD_STAT_CANNELLING );
+    NSLog(@"parser: %d", [m_x3gsp isopen]);
+    [NSThread detachNewThreadSelector:@selector(run) toTarget:self withObject:nil];
+    //assert( ![self isExecuting] && m_botstate != BUILD_STAT_RUNNING && m_botstate != BUILD_STAT_CANNELLING );
     m_botstate = BUILD_STAT_NONE;
     return true;
 }
@@ -156,22 +170,24 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
             (BUILD_STAT_RUNNING == m_botstate) ?
                 BUILD_STAT_PAUSED : BUILD_STAT_RUNNING;
     //emit this->setbotstat(m_botstate);
+    [self performSelectorOnMainThread:@selector(slotbotstateupdate:) withObject:(id)m_botstate waitUntilDone:true];
 
     CPacketBuilder *pb = [[CPacketBuilder alloc] init:PAUSE];//(MotherboardCommandCode::PAUSE);
     CPacketResponse *pr = [[CPacketResponse alloc] init:[self runcommand_lock:pb :10]];//runcommand_lock(&pb, 10);
     ResponseCode rc = [pr getResponseCode];
-    //qDebug("pausebuild(), response code:%d", rc);
+    NSLog(@"pausebuild(), response code:%lu", (unsigned long)rc);
 }
 
 -(void)cancelbuild
 {
     m_botstate = BUILD_STAT_CANCELED;   // set local state first
     //emit this->setbotstat(m_botstate);
+    [self performSelectorOnMainThread:@selector(slotbotstateupdate:) withObject:(id)m_botstate waitUntilDone:true];
 
     CPacketBuilder *pb = [[CPacketBuilder alloc] init:ABORT];//(MotherboardCommandCode::ABORT);
     CPacketResponse *pr = [[CPacketResponse alloc] init:[self runcommand_lock:pb :10]];//runcommand_lock(&pb, 10);
     ResponseCode rc = [pr getResponseCode];
-    //qDebug("cancelbuild(), response code:%d", rc);
+    NSLog(@"cancelbuild(), response code:%lu", (unsigned long)rc);
 }
 
 -(void)resetbot
@@ -180,7 +196,7 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
     CPacketBuilder *pb = [[CPacketBuilder alloc] init:RESET];//(MotherboardCommandCode::RESET);
     CPacketResponse *pr = [[CPacketResponse alloc] init:[self runcommand_lock:pb :5]];//runcommand_lock(&pb, 5);
     ResponseCode rc = [pr getResponseCode];
-    //qDebug("resetbot(), response code:%d", rc);
+    NSLog(@"resetbot(), response code:%lu", (unsigned long)rc);
 
     // TODO:build state can not get from bot,
     // bot state can not set to NONE from CANCELLED
@@ -192,6 +208,10 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
 
 -(void)run
 {
+    NSLog(@"Start Run");
+    //NSLog(@"%d", [m_x3gsp getfile]);
+    [m_x3gsp open:[m_x3gsp getfile]];
+    
     long execcnt = 0;
     bool botfull = false;
     CPacketBuilder* pb = NULL;
@@ -205,6 +225,7 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
     // and generate an event to notify state changed
     m_botstate = BUILD_STAT_RUNNING;
     //emit this->setbotstat(m_botstate);
+    //[self performSelectorOnMainThread:@selector(slotbotstateupdate:) withObject:(id)m_botstate waitUntilDone:true];
     assert( [m_x3gsp isopen] );
 
     while ( m_brunning /*&& !m_cancelbuild*/ )
@@ -232,11 +253,12 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
                 if ( NULL == pb ) {
                     m_botstate = BUILD_STAT_FINISHED_NORMALLY;
                     //emit this->setbotstat(m_botstate);
+                    [self performSelectorOnMainThread:@selector(slotbotstateupdate:) withObject:(id)m_botstate waitUntilDone:true];
                     break;
                 }
 
                 botfull = false;
-                pr = runcommandtool(m_com, pb, 10, receiveData);
+                pr = runcommandtool(m_com, pb, 10);
                 ResponseCode rc = [pr getResponseCode];
                 switch ( rc ) {
                 case OK:
@@ -250,14 +272,14 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
                     break;
 
                 case CANCEL:       // cancel operation
-                    //qDebug("response: cancel operation.");
+                    NSLog(@"response: cancel operation.");
                     //m_botstate = BUILD_STAT_CANCELED;
                     /*delete pb;*/ pb = NULL;
                     break;
 
                 default:
                     // TODO: on exception, we should stop bot
-                    //qDebug("ERROR: response code:%d", rc);
+                    NSLog(@"ERROR: response code:%lu", (unsigned long)rc);
                     /*delete pb;*/ pb = NULL;
                     execcnt++;
                     break;
@@ -284,6 +306,7 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
 
             if ( BUILD_STAT_RUNNING == m_botstate ) {
                 //emit this->setbotpercent(execcnt);
+                [self performSelectorOnMainThread:@selector(setbotpercent:) withObject:(id)execcnt waitUntilDone:true];
             }
         }
 
@@ -301,7 +324,7 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
     }
 
     BotBuildStat bbs = [self updatebotstate:10];
-    //qDebug("thread exit, bbs=%d", bbs);
+    NSLog(@"thread exit, bbs=%lu", (unsigned long)bbs);
     if ( pb ) /*delete pb;*/ pb = NULL;
 }
 
@@ -316,11 +339,11 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
         break;
 
     case TIMEOUT:
-        //qDebug("updatebotstate() timeout");
+        NSLog(@"updatebotstate() timeout");
         break;
 
     default:
-        //qDebug("updatebotstate() fail. response code:%d", rc);
+        NSLog(@"updatebotstate() fail. response code:%lu", (unsigned long)rc);
         break;
     }
 
@@ -329,7 +352,9 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
 
 -(int)readtoclear:(int) retry /*= 50*/
 {
-    if ( !m_com || !m_com->isOpen() )
+    receivePortData = [NSMutableString stringWithString:@""];
+    return 0;
+    /*if ( !m_com || ![m_com isOpen] )
         return 0;
 
     int count = 0;
@@ -342,7 +367,7 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
     }
     [m_mutex unlock];
 
-    return count;
+    return count;*/
 }
 
 -(bool)isbotfinished
@@ -355,7 +380,7 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
     case OK:
     case CANCEL:
         ival = [pr get8];
-        //qDebug("bot finished:%d", ival);
+        NSLog(@"bot finished:%d", ival);
         return (ival != 0);
 
     default:
@@ -365,3 +390,4 @@ CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * con
 
 @end
 
+NSMutableString *receivePortData;

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		387D73271ABD738400D6DB47 /* ORSSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D73221ABD738400D6DB47 /* ORSSerialPort.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		387D73281ABD738400D6DB47 /* ORSSerialPortManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D73241ABD738400D6DB47 /* ORSSerialPortManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		387D73291ABD738400D6DB47 /* ORSSerialRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D73261ABD738400D6DB47 /* ORSSerialRequest.m */; };
 		38ACD2D51ABCB0300036B6E9 /* list_ports_linux.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2CF1ABCB0300036B6E9 /* list_ports_linux.mm */; };
 		38ACD2D61ABCB0300036B6E9 /* list_ports_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2D01ABCB0300036B6E9 /* list_ports_osx.mm */; };
 		38ACD2D71ABCB0300036B6E9 /* list_ports_win.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2D11ABCB0300036B6E9 /* list_ports_win.mm */; };
@@ -177,6 +180,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		387D73211ABD738400D6DB47 /* ORSSerialPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORSSerialPort.h; path = ORSSerialPort/ORSSerialPort.h; sourceTree = "<group>"; };
+		387D73221ABD738400D6DB47 /* ORSSerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORSSerialPort.m; path = ORSSerialPort/ORSSerialPort.m; sourceTree = "<group>"; };
+		387D73231ABD738400D6DB47 /* ORSSerialPortManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORSSerialPortManager.h; path = ORSSerialPort/ORSSerialPortManager.h; sourceTree = "<group>"; };
+		387D73241ABD738400D6DB47 /* ORSSerialPortManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORSSerialPortManager.m; path = ORSSerialPort/ORSSerialPortManager.m; sourceTree = "<group>"; };
+		387D73251ABD738400D6DB47 /* ORSSerialRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORSSerialRequest.h; path = ORSSerialPort/ORSSerialRequest.h; sourceTree = "<group>"; };
+		387D73261ABD738400D6DB47 /* ORSSerialRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORSSerialRequest.m; path = ORSSerialPort/ORSSerialRequest.m; sourceTree = "<group>"; };
 		38ACD2C81ABCB0300036B6E9 /* unix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unix.h; sourceTree = "<group>"; };
 		38ACD2C91ABCB0300036B6E9 /* win.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = win.h; sourceTree = "<group>"; };
 		38ACD2CA1ABCB0300036B6E9 /* serial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serial.h; sourceTree = "<group>"; };
@@ -428,6 +437,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		387D73201ABD735700D6DB47 /* ORSSerialPort */ = {
+			isa = PBXGroup;
+			children = (
+				387D73211ABD738400D6DB47 /* ORSSerialPort.h */,
+				387D73221ABD738400D6DB47 /* ORSSerialPort.m */,
+				387D73231ABD738400D6DB47 /* ORSSerialPortManager.h */,
+				387D73241ABD738400D6DB47 /* ORSSerialPortManager.m */,
+				387D73251ABD738400D6DB47 /* ORSSerialRequest.h */,
+				387D73261ABD738400D6DB47 /* ORSSerialRequest.m */,
+			);
+			name = ORSSerialPort;
+			sourceTree = "<group>";
+		};
 		38ACD2C41ABCAFDA0036B6E9 /* serial */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,6 +642,7 @@
 		FDEDF7AE148961D800E6CFF1 /* RepetierHost */ = {
 			isa = PBXGroup;
 			children = (
+				387D73201ABD735700D6DB47 /* ORSSerialPort */,
 				38ACD2C51ABCAFF00036B6E9 /* connection */,
 				38ACD2C41ABCAFDA0036B6E9 /* serial */,
 				FDB2C6871494CB5700276479 /* transformer */,
@@ -1017,6 +1040,7 @@
 				FDEDF813148A694900E6CFF1 /* RHLogger.m in Sources */,
 				FDEDF816148A879800E6CFF1 /* PrinterConnection.m in Sources */,
 				38ACD2EB1ABCB07E0036B6E9 /* ibuttoncrc.m in Sources */,
+				387D73271ABD738400D6DB47 /* ORSSerialPort.m in Sources */,
 				FDEDF81A148B603000E6CFF1 /* StringUtil.m in Sources */,
 				FD1719CF148D35750023E262 /* RHLinkedList.m in Sources */,
 				38ACD2D61ABCB0300036B6E9 /* list_ports_osx.mm in Sources */,
@@ -1047,6 +1071,7 @@
 				FD98D9E814BCEF710079AB43 /* RHActionTabDelegate.m in Sources */,
 				38ACD2ED1ABCB07E0036B6E9 /* packetprocessor.m in Sources */,
 				FD13BF7614C090620007E33D /* RHAnimation.m in Sources */,
+				387D73281ABD738400D6DB47 /* ORSSerialPortManager.m in Sources */,
 				FD13BF7C14C1756D0007E33D /* STLComposer.m in Sources */,
 				38ACD2D71ABCB0300036B6E9 /* list_ports_win.mm in Sources */,
 				FD6E2F7614C2446700F57498 /* EEPROMController.m in Sources */,
@@ -1070,6 +1095,7 @@
 				FD283A9B14EFB10D00597203 /* HistoryTextField.m in Sources */,
 				FD22AFC41501822D009BE821 /* GCodeShort.m in Sources */,
 				FD141AD5150E5E5D00D74E18 /* RectPacker.m in Sources */,
+				387D73291ABD738400D6DB47 /* ORSSerialRequest.m in Sources */,
 				FD1C3169158F87C100B13408 /* RHSound.m in Sources */,
 				FD9447BC15D82C6100AFE7F1 /* RHSlicer.m in Sources */,
 				FD9447BF15D831A100AFE7F1 /* IniFile.m in Sources */,
@@ -1181,7 +1207,7 @@
 				GCC_PREFIX_HEADER = "RepetierHost/RepetierHost-Prefix.pch";
 				INFOPLIST_FILE = "RepetierHost/RepetierHost-Info.plist";
 				INSTALL_OWNER = "$(USER)";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
@@ -1205,7 +1231,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "RepetierHost/RepetierHost-Info.plist";
 				INSTALL_OWNER = "$(USER)";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

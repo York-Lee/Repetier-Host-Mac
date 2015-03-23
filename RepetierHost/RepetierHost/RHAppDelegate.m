@@ -196,6 +196,8 @@
     else
         [connection open];*/
     Printer_connection *printer_Connection = [[Printer_connection alloc] init];
+    //[printer_Connection on_btnX3gFileOpen_clicked];
+    [printer_Connection on_btnX3gFileStart_clicked];
 }
 
 - (IBAction)openPrinterSettings:(id)sender {

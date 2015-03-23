@@ -639,6 +639,7 @@
     dir = [dir stringByExpandingTildeInPath];
     NSString *config = [NSString stringWithFormat:@"%@/slic3r.ini",dir];
     NSString *cdir = [RHSlicer slic3rConfigDir];
+    NSLog(@"this is the cdir:  %@",cdir);
     IniFile *ini = [[[IniFile alloc] init] autorelease];
     NSString *fPrinter = [NSString stringWithFormat:@"%@/print/%@.ini",cdir,sPrint];
     [ini read:fPrinter];
