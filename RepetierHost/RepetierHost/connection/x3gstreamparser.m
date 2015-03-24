@@ -34,15 +34,13 @@
 -(CPacketBuilder*)tryparse:(uint8_t*) stream :(int) pos1 :(int) pos2 :(int*) nextpos
 {
     *nextpos = pos1;
-    NSLog(@"%d,%d", stream[pos1], m_cmd);
+    //NSLog(@"%d,%d", stream[pos1], m_cmd);
 
     if ( (pos1+m_parlen+1) > pos2 || stream[pos1] != m_cmd ) return NULL;
     if ( m_subcmd >= 0 && m_subcmd != stream[pos1+m_subcmdpos] ) return NULL;
 
     int i = pos1 + 1;
     *nextpos = i + m_parlen;
-    NSLog(@"nextpos:%d", *nextpos);
-    NSLog(@"parlen:%d", m_parlen);
     CPacketBuilder* pb = [[CPacketBuilder alloc] init:m_cmd];//new CPacketBuilder((MotherboardCommandCode::MotherboardCommandCode)m_cmd);
     //NSLog(@"Nextpos:%d", *nextpos);
     for ( ; i < *nextpos; i++ )
@@ -52,7 +50,7 @@
     if ( true == m_bparstring ) {
         while ( *nextpos < pos2 && 0 != stream[*nextpos] ) (*nextpos)++;
         if ( *nextpos >= pos2 ) {
-            /*delete pb;*/ pb = NULL;
+            [pb dealloc];/*delete pb;*/ pb = NULL;
             return NULL;
         }
 
@@ -208,7 +206,7 @@ static const int m_bufflentoparse = 1024;
     //NSLog(m_file);
     if ([filemgr fileExistsAtPath:m_file])
     {
-        @try {
+        /*@try {
             [fileHandle closeFile];
         }
         @catch (NSException *exception) {
@@ -218,7 +216,9 @@ static const int m_bufflentoparse = 1024;
             fileHandle = [NSFileHandle fileHandleForReadingAtPath:m_file];
         }
         
-        //fileHandle = [NSFileHandle fileHandleForReadingAtPath:m_file];
+        /*/
+        fileHandle = nil;
+        fileHandle = [NSFileHandle fileHandleForReadingAtPath:m_file];
         return true;
     }
     return false;
@@ -256,13 +256,12 @@ static const int m_bufflentoparse = 1024;
 
 -(CPacketBuilder*)getnext
 {
-    //NSLog(@"%d", [fileHandle fileDescriptor]);
     NSFileManager *filemgr = [NSFileManager defaultManager];
     if (![filemgr fileExistsAtPath:m_file]) return NULL;
     NSFileHandle *tmp_m_file = [NSFileHandle fileHandleForReadingAtPath:m_file];
     unsigned long long eof = [tmp_m_file seekToEndOfFile];
-    NSLog(@"OffsetinFile: %llu", [fileHandle offsetInFile]);
-    NSLog(@"endoffile: %llu", eof);
+    //NSLog(@"OffsetinFile: %llu", [fileHandle offsetInFile]);
+    //NSLog(@"endoffile: %llu", eof);
     if ([fileHandle offsetInFile] == eof && m_bufflen <= 0 ) {
         return NULL;
     }
@@ -286,7 +285,6 @@ static const int m_bufflentoparse = 1024;
         int cnt = (int)[dataread length];
         //[fileHandle seekToFileOffset:[fileHandle offsetInFile] + cnt];
         memcpy(m_buffer + pos, [dataread bytes], cnt);
-        NSLog(@"Buffer_first: %hhu",m_buffer[0]);
         //int cnt = m_file.read((char*)(m_buffer+pos), m_buffsize-pos);
         m_bufflen += cnt;
     }
@@ -331,7 +329,7 @@ static const int m_bufflentoparse = 1024;
     while ( 1 ) {
         pb = [x3gsp getnext];
         if ( NULL == pb ) break;
-        /*delete pb;*/ count++;
+        [pb dealloc];/*delete pb;*/ count++;
     }
 
     //int tm1ms = tm1.elapsed();

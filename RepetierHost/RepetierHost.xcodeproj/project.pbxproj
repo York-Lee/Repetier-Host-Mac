@@ -10,6 +10,7 @@
 		387D73271ABD738400D6DB47 /* ORSSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D73221ABD738400D6DB47 /* ORSSerialPort.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		387D73281ABD738400D6DB47 /* ORSSerialPortManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D73241ABD738400D6DB47 /* ORSSerialPortManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		387D73291ABD738400D6DB47 /* ORSSerialRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 387D73261ABD738400D6DB47 /* ORSSerialRequest.m */; };
+		388647AD1ABFF87A00155378 /* Translate.m in Sources */ = {isa = PBXBuildFile; fileRef = 388647AC1ABFF87A00155378 /* Translate.m */; };
 		38ACD2D51ABCB0300036B6E9 /* list_ports_linux.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2CF1ABCB0300036B6E9 /* list_ports_linux.mm */; };
 		38ACD2D61ABCB0300036B6E9 /* list_ports_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2D01ABCB0300036B6E9 /* list_ports_osx.mm */; };
 		38ACD2D71ABCB0300036B6E9 /* list_ports_win.mm in Sources */ = {isa = PBXBuildFile; fileRef = 38ACD2D11ABCB0300036B6E9 /* list_ports_win.mm */; };
@@ -186,6 +187,8 @@
 		387D73241ABD738400D6DB47 /* ORSSerialPortManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORSSerialPortManager.m; path = ORSSerialPort/ORSSerialPortManager.m; sourceTree = "<group>"; };
 		387D73251ABD738400D6DB47 /* ORSSerialRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ORSSerialRequest.h; path = ORSSerialPort/ORSSerialRequest.h; sourceTree = "<group>"; };
 		387D73261ABD738400D6DB47 /* ORSSerialRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ORSSerialRequest.m; path = ORSSerialPort/ORSSerialRequest.m; sourceTree = "<group>"; };
+		388647AB1ABFF87A00155378 /* Translate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translate.h; sourceTree = "<group>"; };
+		388647AC1ABFF87A00155378 /* Translate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translate.m; sourceTree = "<group>"; };
 		38ACD2C81ABCB0300036B6E9 /* unix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unix.h; sourceTree = "<group>"; };
 		38ACD2C91ABCB0300036B6E9 /* win.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = win.h; sourceTree = "<group>"; };
 		38ACD2CA1ABCB0300036B6E9 /* serial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serial.h; sourceTree = "<group>"; };
@@ -732,6 +735,8 @@
 				FD74DBC314D06AE300422BFE /* EEPROMParameter.m */,
 				FD92675A14D85552005B31FF /* Slicer.h */,
 				FD92675B14D85552005B31FF /* Slicer.m */,
+				388647AB1ABFF87A00155378 /* Translate.h */,
+				388647AC1ABFF87A00155378 /* Translate.m */,
 				FD28664014DE7A130081750D /* TemperatureHistory.h */,
 				FD28664114DE7A130081750D /* TemperatureHistory.m */,
 			);
@@ -1054,6 +1059,7 @@
 				FDB2C67D1493CC9300276479 /* LogSplitViewDelegate.m in Sources */,
 				FDB2C6821494AD1600276479 /* RHManualControl.m in Sources */,
 				FDB2C68A1494CB8C00276479 /* IntegerTransformer.m in Sources */,
+				388647AD1ABFF87A00155378 /* Translate.m in Sources */,
 				FD1E242314967310008AF30C /* ThreeDContainer.m in Sources */,
 				FD1E24261497A612008AF30C /* RHOpenGLView.m in Sources */,
 				FD1E242B1497B7D4008AF30C /* ThreeDConfig.m in Sources */,

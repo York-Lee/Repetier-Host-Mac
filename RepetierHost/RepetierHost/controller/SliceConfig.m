@@ -8,6 +8,13 @@
 
 #import "SliceConfig.h"
 #import "PrinterConfiguration.h"
+#import "Translate.h"
+#import "IniFile.h"
+#import "STL.h"
+#import "RHTask.h"
+#import "RHAppDelegate.h"
+#import "RHSlicer.h"
+#import "STLComposer.h"
 
 @interface SliceConfig ()
 
@@ -26,36 +33,20 @@
     dual_225_config = [NSArray arrayWithObjects:@"dual_print", @"dual_filament", @"support_filament", @"dual_225_printer", nil];
     dual_300_config = [NSArray arrayWithObjects:@"dual_print", @"dual_filament", @"support_filament", @"dual_300_printer", nil];
     lapple_config = [NSArray arrayWithObjects:@"lapple_print", @"lapple_filament", @"lapple_printer" , nil];
+    machineType_config = [NSArray arrayWithObjects:@"SMART225P", @"SMART300M", @"LAPPLE100" , nil];
+    slicedir = @"~/Library/Application Support/Slic3r";
     file_1 = [[NSMutableString alloc] initWithString:@""];
     file_2 = [[NSMutableString alloc] initWithString:@""];
     file_3 = [[NSMutableString alloc] initWithString:@""];
     file_4 = [[NSMutableString alloc] initWithString:@""];
 }
 
-
 - (IBAction)sliceButtonHit:(id)sender {
-    NSFileManager *fm=[NSFileManager defaultManager];
-    file_1 = @"/Users/liyingkai/Documents/test/1.txt";
-    file_2 = @"/Users/liyingkai/Documents/test/2.txt";
-    file_3 = @"/Users/liyingkai/Documents/test/3.txt";
-    NSData *data1=[fm contentsAtPath:file_1];
-    NSData *data2=[fm contentsAtPath:file_2];
-    NSMutableData *data = [[NSMutableData alloc] initWithLength:0];
-    [data appendData:data1];
-    [data appendData:data2];
-    if(![fm fileExistsAtPath:file_3])
-    {
-        [fm createFileAtPath:file_3 contents:data attributes:nil];
-    }
-    else
-    {
-        [fm removeItemAtPath:file_3 error:nil];
-        [fm createFileAtPath:file_3 contents:data attributes:nil];
-    }
-    //runSystemCommand(@"cp /Users/liyingkai/Documents/code/rbm.py /Users/liyingkai/Documents/");
-    /*NSString* s1 = [NSString stringWithContentsOfFile:file_1 encoding:NSUTF8StringEncoding error:nil];
-    NSString* s2 = [NSString stringWithContentsOfFile:file_2 encoding:NSUTF8StringEncoding error:nil];
-    NSString* s = [s1 stringByAppendingString:s2];*/
+    [self SelectMachineType];
+    NSLog(@"Machine done");
+    [self Select_Extruder];
+    NSLog(@"truder done");
+    [app->composer generateGCode:nil];
 }
 
 void runSystemCommand(NSString *cmd)
@@ -67,58 +58,67 @@ void runSystemCommand(NSString *cmd)
 
 -(void)SelectMachineType
 {
-    /*machineType = [[printerType objectValueOfSelectedItem] lowercaseString];//machineType_ComboBox.SelectedItem.ToString().ToLower();
-    if ([machineType containsString:@"smart-225p"] && [[extruder objectValueOfSelectedItem] containsString:@"L_R_EXTRUDER"])
+    single_r225_config = [NSArray arrayWithObjects:@"single_r_print", @"single_filament", @"single_r225_printer", nil];
+    single_l225_config = [NSArray arrayWithObjects:@"single_l_print", @"single_filament", @"single_l225_printer", nil];
+    single_r300_config = [NSArray arrayWithObjects:@"single_r_print", @"single_filament", @"single_r300_printer", nil];
+    single_l300_config = [NSArray arrayWithObjects:@"single_l_print", @"single_filament", @"single_l300_printer", nil];
+    dual_225_config = [NSArray arrayWithObjects:@"dual_print", @"dual_filament", @"support_filament", @"dual_225_printer", nil];
+    dual_300_config = [NSArray arrayWithObjects:@"dual_print", @"dual_filament", @"support_filament", @"dual_300_printer", nil];
+    lapple_config = [NSArray arrayWithObjects:@"lapple_print", @"lapple_filament", @"lapple_printer" , nil];
+    machineType_config = [NSArray arrayWithObjects:@"SMART225P", @"SMART300M", @"LAPPLE100" , nil];
+    
+    NSString* seletedmachineType = [[printerType objectValueOfSelectedItem] lowercaseString];//machineType_ComboBox.SelectedItem.ToString().ToLower();
+    if ([seletedmachineType containsString:@"smart-225p"] && [[extruder objectValueOfSelectedItem] containsString:[Translate translate:@"L_R_EXTRUDER"]])
     {
         currentPrinterConfiguration.Slic3rPrint = [single_r225_config objectAtIndex:0];
         currentPrinterConfiguration.Slic3rFilament1 = [single_r225_config objectAtIndex:1];
         currentPrinterConfiguration.Slic3rPrinter = [single_r225_config objectAtIndex:2];
-        machine = MachineType.SMART225P;
+        machineType = [machineType_config objectAtIndex:0];
     }
-    if ([machineType containsString:@"smart-225p"] && [[extruder objectValueOfSelectedItem] containsString:@"L_L_EXTRUDER"])
+    if ([seletedmachineType containsString:@"smart-225p"] && [[extruder objectValueOfSelectedItem] containsString:[Translate translate:@"L_L_EXTRUDER"]])
     {
         currentPrinterConfiguration.Slic3rPrint = [single_l225_config objectAtIndex:0];
         currentPrinterConfiguration.Slic3rFilament1 = [single_l225_config objectAtIndex:1];
         currentPrinterConfiguration.Slic3rPrinter = [single_l225_config objectAtIndex:2];
-        machine = MachineType.SMART225P;
+        machineType = machineType = [machineType_config objectAtIndex:0];
     }
-    if ([machineType containsString:@"smart-300m"] && [[extruder objectValueOfSelectedItem] containsString:@"L_R_EXTRUDER"])
+    if ([seletedmachineType containsString:@"smart-300m"] && [[extruder objectValueOfSelectedItem] containsString:[Translate translate:@"L_R_EXTRUDER"]])
     {
         currentPrinterConfiguration.Slic3rPrint = [single_r300_config objectAtIndex:0];
         currentPrinterConfiguration.Slic3rFilament1 = [single_r300_config objectAtIndex:1];
         currentPrinterConfiguration.Slic3rPrinter = [single_r300_config objectAtIndex:2];
-        machine = MachineType.SMART300M;
+        machineType = machineType = [machineType_config objectAtIndex:1];
     }
-    if ([machineType containsString:@"smart-300m"] && [[extruder objectValueOfSelectedItem] containsString:@"L_L_EXTRUDER"])
+    if ([seletedmachineType containsString:@"smart-300m"] && [[extruder objectValueOfSelectedItem] containsString:[Translate translate:@"L_L_EXTRUDER"]])
     {
         currentPrinterConfiguration.Slic3rPrint = [single_l300_config objectAtIndex:0];
         currentPrinterConfiguration.Slic3rFilament1 = [single_l300_config objectAtIndex:1];
         currentPrinterConfiguration.Slic3rPrinter = [single_l300_config objectAtIndex:2];
-        machine = MachineType.SMART300M;
+        machineType = machineType = [machineType_config objectAtIndex:1];
     }
-    if ([machineType containsString:@"smart-225p"] && [[extruder objectValueOfSelectedItem] containsString:@"L_DUAL_EXTRUDER"])
+    if ([seletedmachineType containsString:@"smart-225p"] && [[extruder objectValueOfSelectedItem] containsString:[Translate translate:@"L_DUAL_EXTRUDER"]])
     {
         currentPrinterConfiguration.Slic3rPrint = [dual_225_config objectAtIndex:0];
         currentPrinterConfiguration.Slic3rFilament1 = [dual_225_config objectAtIndex:1];
         currentPrinterConfiguration.Slic3rFilament2 = [dual_225_config objectAtIndex:2];
-        Main.printerModel.Slic3rPrinter = [dual_225_config objectAtIndex:3];
-        machine = MachineType.SMART225P;
+        currentPrinterConfiguration.Slic3rPrinter = [dual_225_config objectAtIndex:3];
+        machineType = machineType = [machineType_config objectAtIndex:0];
     }
-    if ([machineType containsString:@"smart-300m"] && [[extruder objectValueOfSelectedItem] containsString:@"L_DUAL_EXTRUDER"])
+    if ([seletedmachineType containsString:@"smart-300m"] && [[extruder objectValueOfSelectedItem] containsString:[Translate translate:@"L_DUAL_EXTRUDER"]])
     {
         currentPrinterConfiguration.Slic3rPrint = [dual_300_config objectAtIndex:0];
         currentPrinterConfiguration.Slic3rFilament1 = [dual_300_config objectAtIndex:1];
         currentPrinterConfiguration.Slic3rFilament2 = [dual_300_config objectAtIndex:2];
         currentPrinterConfiguration.Slic3rPrinter = [dual_300_config objectAtIndex:3];
-        machine = MachineType.SMART300M;
+        machineType = machineType = [machineType_config objectAtIndex:1];
     }
-    if ([machineType containsString:@"lapple"] && [[extruder objectValueOfSelectedItem] containsString:@"L_R_EXTRUDER"])
+    if ([seletedmachineType containsString:@"lapple"] && [[extruder objectValueOfSelectedItem] containsString:[Translate translate:@"L_R_EXTRUDER"]])
     {
         currentPrinterConfiguration.Slic3rPrint = [lapple_config objectAtIndex:0];
         currentPrinterConfiguration.Slic3rFilament1 = [lapple_config objectAtIndex:1];
         currentPrinterConfiguration.Slic3rPrinter = [lapple_config objectAtIndex:2];
-        machine = MachineType.LAPPLE100;
-    }*/
+        machineType = machineType = [machineType_config objectAtIndex:2];
+    }
 }
 
 -(IBAction)extruderBoxClicked:(id) sender
@@ -136,11 +136,11 @@ void runSystemCommand(NSString *cmd)
         //rightLbl.Enabled = false;
         [leftExtruderTemperature setEnabled:true];
         //leftLbl.Enabled = true;
-        //Main.conn.numberExtruder = 1;
+        currentPrinterConfiguration->numberOfExtruder = 1;
     }
     if ([[extruder objectValueOfSelectedItem] containsString:@"Right"])//@"L_L_EXTRUDER"])
     {
-        //Main.conn.numberExtruder = 1;
+        currentPrinterConfiguration->numberOfExtruder = 1;
         [rightExtruderTemperature setEnabled:true];
         //rightLbl.Enabled = true;
         [leftExtruderTemperature setEnabled:false];
@@ -153,7 +153,7 @@ void runSystemCommand(NSString *cmd)
         [leftExtruderTemperature setEnabled:true];
         //leftLbl.Enabled = true;
         //  comboSlic3rFilamentSettings2.Enabled = true;
-        //Main.conn.numberExtruder = 2;
+        currentPrinterConfiguration->numberOfExtruder = 2;
     }
 }
 

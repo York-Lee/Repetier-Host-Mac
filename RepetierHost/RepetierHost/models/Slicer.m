@@ -610,6 +610,7 @@
 }
 /** Build Slic3r configuration file, store stl file and start Slic3r */
 -(void)sliceSlic3r:(NSString*)file {
+    NSLog(file);
     if(slic3rExtSlice!=nil) {
         if(slic3rExtSlice->running) {
             return;
@@ -687,7 +688,7 @@
             [self sliceSlic3r:file];
             break;
         case 3:
-            [self sliceSkeinforge:file];
+            [self sliceSlic3r:file];//[self sliceSkeinforge:file];
             break;
     }
 }

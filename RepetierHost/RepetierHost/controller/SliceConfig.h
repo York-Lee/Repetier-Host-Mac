@@ -26,6 +26,7 @@
     IBOutlet NSButton *checkbox;
     NSString* machineType;
     NSString* extruder_type;
+    NSString* slicedir;
     float infill_rate;
     float layer_height;
     float travel_speed;
@@ -43,6 +44,7 @@
     NSArray* dual_225_config;
     NSArray* dual_300_config;
     NSArray* lapple_config;
+    NSArray* machineType_config;
 }
 
 - (IBAction)sliceButtonHit:(id)sender;

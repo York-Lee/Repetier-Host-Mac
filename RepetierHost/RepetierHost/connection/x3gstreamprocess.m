@@ -4,8 +4,20 @@
 
 CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * const pb, int ms )
 {
-    if ( !pb || ms <= 0 || !pcom || ![pcom isOpen] )
+    if (!pb) {
         return [CPacketResponse timeoutResponse];
+    }
+    if (ms <= 0) {
+        return [CPacketResponse timeoutResponse];
+    }
+    if (!pcom) {
+        return [CPacketResponse timeoutResponse];
+    }
+    if (![pcom isOpen]) {
+        return [CPacketResponse timeoutResponse];
+    }
+    /*if ( !pb || ms <= 0 || !pcom || ![pcom isOpen] )
+        return [CPacketResponse timeoutResponse];*/
 
     int i, len, packlen, accupos;
     bool complete = false;
@@ -141,6 +153,11 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     m_x3gsp = pParser;
 }
 
+-(NSString*)getbaudrate
+{
+    return (NSString*)m_com.baudRate;
+}
+
 -(void)setrunflag:(bool) brun
 {
     m_brunning = brun;
@@ -158,9 +175,11 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
 -(bool)startbuild
 {
     NSLog(@"parser: %d", [m_x3gsp isopen]);
-    [NSThread detachNewThreadSelector:@selector(run) toTarget:self withObject:nil];
+    NSLog(@"baudRate:%@, isopen:%d", m_com.baudRate, [m_com isOpen]);
     //assert( ![self isExecuting] && m_botstate != BUILD_STAT_RUNNING && m_botstate != BUILD_STAT_CANNELLING );
     m_botstate = BUILD_STAT_NONE;
+    //[self run];
+    [NSThread detachNewThreadSelector:@selector(run:) toTarget:self withObject:m_com];
     return true;
 }
 
@@ -206,11 +225,13 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     m_botstate = BUILD_STAT_NONE;
 }
 
--(void)run
+-(void)run:(ORSSerialPort*) connection_com
 {
     NSLog(@"Start Run");
-    //NSLog(@"%d", [m_x3gsp getfile]);
+    NSLog(@"%@", [m_x3gsp getfile]);
     [m_x3gsp open:[m_x3gsp getfile]];
+    NSLog(@"%@", connection_com.baudRate);
+    [connection_com open];
     
     long execcnt = 0;
     bool botfull = false;
@@ -227,9 +248,11 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     //emit this->setbotstat(m_botstate);
     //[self performSelectorOnMainThread:@selector(slotbotstateupdate:) withObject:(id)m_botstate waitUntilDone:true];
     assert( [m_x3gsp isopen] );
+    //NSLog(@"FileOpen: %d", [m_x3gsp testfile]);
 
     while ( m_brunning /*&& !m_cancelbuild*/ )
     {
+        NSLog(@"Looping Status: %lu, IterationNum: %d", (unsigned long)m_botstate, execcnt);
         // lock all switch-case
         // structure to avoid sending command
         // just after cancel command from main thread.
@@ -251,18 +274,19 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
 
                 // all x3g send done, wait for bot stop
                 if ( NULL == pb ) {
+                    NSLog(@"pb is null");
                     m_botstate = BUILD_STAT_FINISHED_NORMALLY;
                     //emit this->setbotstat(m_botstate);
-                    [self performSelectorOnMainThread:@selector(slotbotstateupdate:) withObject:(id)m_botstate waitUntilDone:true];
+                    //[self performSelectorOnMainThread:@selector(slotbotstateupdate:) withObject:(id)m_botstate waitUntilDone:true];
                     break;
                 }
 
                 botfull = false;
-                pr = runcommandtool(m_com, pb, 10);
+                pr = runcommandtool(connection_com, pb, 10);
                 ResponseCode rc = [pr getResponseCode];
                 switch ( rc ) {
                 case OK:
-                    /*delete pb;*/
+                    [pb dealloc];/*delete pb;*/
                     pb = NULL;
                     execcnt++;
                     break;
@@ -274,13 +298,13 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
                 case CANCEL:       // cancel operation
                     NSLog(@"response: cancel operation.");
                     //m_botstate = BUILD_STAT_CANCELED;
-                    /*delete pb;*/ pb = NULL;
+                    [pb dealloc];/*delete pb;*/ pb = NULL;
                     break;
 
                 default:
                     // TODO: on exception, we should stop bot
                     NSLog(@"ERROR: response code:%lu", (unsigned long)rc);
-                    /*delete pb;*/ pb = NULL;
+                    [pb dealloc];/*delete pb;*/ pb = NULL;
                     execcnt++;
                     break;
                 }
@@ -306,7 +330,7 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
 
             if ( BUILD_STAT_RUNNING == m_botstate ) {
                 //emit this->setbotpercent(execcnt);
-                [self performSelectorOnMainThread:@selector(setbotpercent:) withObject:(id)execcnt waitUntilDone:true];
+                //[self performSelectorOnMainThread:@selector(setbotpercent:) withObject:(id)execcnt waitUntilDone:true];
             }
         }
 
@@ -325,7 +349,7 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
 
     BotBuildStat bbs = [self updatebotstate:10];
     NSLog(@"thread exit, bbs=%lu", (unsigned long)bbs);
-    if ( pb ) /*delete pb;*/ pb = NULL;
+    if ( pb ) [pb dealloc];/*delete pb;*/ pb = NULL;
 }
 
 -(BotBuildStat)updatebotstate:(int) retry /*=10*/

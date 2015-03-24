@@ -75,13 +75,14 @@ typedef NS_ENUM(NSUInteger, BotBuildStat)
 -(void)pausebuild;
 -(void)cancelbuild;
 -(void)resetbot;
--(void)run;
+-(void)run:(ORSSerialPort*) connection_com;
 -(void)usrtimerstart;
 -(void)usrtimerstop;
 -(bool)usrtimerellapse;
 -(BotBuildStat)updatebotstate:(int) retry;// = 10);
 -(int)readtoclear:(int) retry;// = 50);
 -(bool)isbotfinished;
+-(NSString*)getbaudrate;
 
 /*signals:
     void setbotstat(int stat);
