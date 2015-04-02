@@ -154,7 +154,7 @@ static const int m_bufflentoparse = 1024;
 -(id)init
 {
     m_buffpos = 0; m_bufflen = 0;
-    m_buffer = (int8_t*)malloc(m_buffsize);//new quint8[m_buffsize];
+    m_buffer = (uint8_t*)malloc(m_buffsize);//new quint8[m_buffsize];
     m_pattens = [[NSMutableArray alloc] initWithObjects:nil];
     condition = [[NSCondition alloc] init];
 

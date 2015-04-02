@@ -13,8 +13,10 @@ NSData* str2hex(const NSString* str)
     //Byte* cstr; cstr.resize(len);
 
     for ( i = 0, j = 0; i < len; i++ ) {
-        unsigned short c1 = qchar2value([str characterAtIndex:j++]);
-        unsigned short c2 = qchar2value([str characterAtIndex:j++]);
+        unsigned short c1 = qchar2value([str characterAtIndex:j]);
+        j++;
+        unsigned short c2 = qchar2value([str characterAtIndex:j]);
+        j++;
         cstr[i] = ((c1 & 0xff) << 4) + (c2 & 0xff);
     }
 

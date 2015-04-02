@@ -11,7 +11,7 @@
         MAX_PACKET_LENGTH = 256,
     };
     int m_idx;
-    int8_t m_data[MAX_PACKET_LENGTH];
+    uint8_t m_data[MAX_PACKET_LENGTH];
     CIButtonCrc *m_crc;
 }
 -(id)init:(int) command;

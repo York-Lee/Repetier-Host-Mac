@@ -16,20 +16,21 @@
     m_idx = 2;
     m_data[0] = START_BYTE;
     // data[1] = length; // just to avoid confusion
-    [self add8:(int8_t)command];
+    [self add8:(uint8_t)command];
     return self;
 }
 
 -(void)add8:(int) v
 {
-    m_data[m_idx++] = (int8_t)v;
-    [m_crc update:(int8_t)v];
+    m_data[m_idx] = (uint8_t)v;
+    m_idx++;
+    [m_crc update:(uint8_t)v];
 }
 
 -(void)add16:(int) v
 {
-    [self add8:(int8_t)(v & 0xff)];
-    [self add8:(int8_t)((v >> 8) & 0xff)];
+    [self add8:(uint8_t)(v & 0xff)];
+    [self add8:(uint8_t)((v >> 8) & 0xff)];
 }
 
 -(void)add32:(long) v
@@ -60,7 +61,7 @@
 -(NSData*)getPacket
 {
     m_data[m_idx] = [m_crc getcrc];
-    m_data[1] = (int8_t)(m_idx - 2);    // len does not count packet header
+    m_data[1] = (uint8_t)(m_idx - 2);    // len does not count packet header
 
     Byte* ba = (Byte*)malloc(m_idx+1); //ba.resize(m_idx+1);
     memcpy(ba, m_data, m_idx+1);

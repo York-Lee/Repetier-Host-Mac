@@ -12,28 +12,19 @@
 
 -(id) init
 {
-    ORSSerialPort *serialPort = [ORSSerialPort serialPortWithPath:@"/dev/tty.usbmodem1451"];
-    //NSData* someData = [[NSData alloc] init];
-    serialPort.baudRate = @115200;
-    [serialPort open];
-    //[serialPort sendData:someData]; // someData is an NSData object
-    [serialPort close];
-    /*serial::Timeout to = serial::Timeout::simpleTimeout(500);
-    NSString* NSportname = [currentPrinterConfiguration port];
-    std::string *portname = new std::string([NSportname UTF8String]);
-    m_com.setPort(*portname);
+    serial::Timeout to = serial::Timeout::simpleTimeout(500);
+    std::string name = "/dev/tty.usbmodem1451";
+    m_com.setPort(name);
     m_com.setBaudrate(115200);
     m_com.setTimeout(to);
-    m_com.open();*/
+    //m_com.open();
     NSLog(@"Init x3gsi, x3gsp");
     m_x3gsp = [[CX3gStreamParser alloc] init];
     //m_x3gsi = [[X3gStreamInterface alloc] initWithTarget:[X3gStreamInterface class] selector:@selector(run:) object:nil];
     //[m_x3gsi setupinit:serialPort :&m_x3gsp];
-    NSLog(@"%@", serialPort.baudRate);
-    m_x3gsi = [[X3gStreamInterface alloc] init:serialPort :&m_x3gsp];
-    NSLog(@"%@", [m_x3gsi getbaudrate]);
+    m_x3gsi = [[X3gStreamInterface alloc] init:&m_com :&m_x3gsp];
     NSLog(@"set filename");
-    m_strfile = @"/Users/liyingkai/Desktop/leveling-150x150.x3g";
+    m_strfile = @"/Users/liyingkai/Desktop/kb.x3g";
     return self;
 }
 

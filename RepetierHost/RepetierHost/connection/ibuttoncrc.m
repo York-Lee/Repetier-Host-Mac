@@ -8,14 +8,15 @@
 @implementation CIButtonCrc
 @synthesize m_crc;
 
--(void)CIButtonCrc
+-(id)init
 {
     m_crc = 0;
+    return self;
 }
 
 //CIButtonCrc::~CIButtonCrc() {}
 
--(void)update:(int8_t) data
+-(void)update:(uint8_t) data
 {
     m_crc = (m_crc ^ data) & 0xff; // i loathe java's promotion rules
     for ( int i = 0; i < 8; i++ ) {
@@ -25,9 +26,9 @@
     }
 }
 
--(int8_t):getcrc
+-(uint8_t)getcrc
 {
-    return (int8_t)m_crc;
+    return (uint8_t)m_crc;
 }
 
 -(void)reset

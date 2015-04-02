@@ -10,6 +10,7 @@
     m_plidx = 0;
     m_payload = NULL;
     m_targetcrc = 0;
+    m_crc = [[CIButtonCrc alloc] init];
     return self;
 }
 
@@ -35,13 +36,13 @@
 -(CPacketResponse*)getResponse
 {
     if ( m_pllen <= 0 ) {
-        CPacketResponse* pr;
+        CPacketResponse* pr = [[CPacketResponse alloc] init];
         return pr;
     }
 
     assert(m_payload && m_pllen > 0);
-    CPacketResponse* pr;//(m_payload, m_pllen);
-    pr.m_payload = m_payload;
+    CPacketResponse* pr = [[CPacketResponse alloc] init:m_payload :m_pllen];//(m_payload, m_pllen);
+    //pr.m_payload = m_payload;
     return pr;
 }
 
@@ -67,7 +68,7 @@
     case LEN:
         NSLog(@"Length: %d", b);
         m_pllen = ((int)b) & 0xFF;
-        m_payload = (int8_t*)(m_pllen);
+        m_payload = (uint8_t*)malloc(m_pllen);//new uint8_t[m_pllen];
         [m_crc reset];
         m_packstat = (m_pllen > 0) ? PAYLOAD : CRC;
         break;
@@ -75,7 +76,8 @@
     case PAYLOAD:
         // sanity check
         if ( m_plidx < m_pllen ) {
-            m_payload[m_plidx++] = b;
+            m_payload[m_plidx] = b;
+            m_plidx++;
             [m_crc update:(b)];
         }
         if ( m_plidx >= m_pllen )

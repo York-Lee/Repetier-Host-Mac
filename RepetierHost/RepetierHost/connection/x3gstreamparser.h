@@ -25,7 +25,7 @@
     NSMutableArray *m_pattens;//<S3gCmdFormat*> m_pattens;
     int m_buffpos, m_bufflen;
     int* m_cmdstatistic;
-    int8_t* m_buffer;
+    uint8_t* m_buffer;
     NSString *m_file;
     NSFileHandle *fileHandle;
     NSCondition *condition;

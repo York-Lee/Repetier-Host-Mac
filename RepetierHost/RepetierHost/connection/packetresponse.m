@@ -21,20 +21,20 @@
     m_payload = NULL;
     if ( [payload length] > 0 ) {
         m_pllen = [payload length];
-        m_payload = (int8_t*)malloc(m_pllen);// new quint8[m_pllen];
+        m_payload = (uint8_t*)malloc(m_pllen);// new quint8[m_pllen];
         memcpy(m_payload, [payload bytes], m_pllen);
     }
     return self;
 }
 
--(id)init:(int8_t* const) payload :(int) len
+-(id)init:(uint8_t* const) payload :(int) len
 {
     m_rdpos = 1;
     m_pllen = 0;
     m_payload = NULL;
     if ( len > 0 ) {
         m_pllen = len;
-        m_payload = (int8_t*)malloc(len);//new quint8[len];
+        m_payload = (uint8_t*)malloc(len);//new quint8[len];
         memcpy(m_payload, payload, len);
     }
     return self;
@@ -45,7 +45,7 @@
     m_payload = NULL;
     m_rdpos = s->m_rdpos; m_pllen = s->m_pllen;
     if ( m_pllen > 0 ) {
-        m_payload = (int8_t*)malloc(m_pllen);
+        m_payload = (uint8_t*)malloc(m_pllen);
         memcpy(m_payload, s->m_payload, m_pllen);
     }
     return self;
@@ -95,7 +95,8 @@
         return 0;
     }
 
-    int ival = m_payload[m_rdpos++];
+    int ival = m_payload[m_rdpos];
+    m_rdpos++;
     return (ival & 0xff);
 }
 
@@ -174,13 +175,13 @@
 +(CPacketResponse*)okResponse
 {
     Byte okPayload[] = {1,1,1,1,1,1,1,1};     // repeated 1s to fake out queries
-    CPacketResponse *pr = [[CPacketResponse alloc] init:(int8_t*)okPayload :sizeof(okPayload)];//(okPayload, sizeof(okPayload));
+    CPacketResponse *pr = [[CPacketResponse alloc] init:(uint8_t*)okPayload :sizeof(okPayload)];//(okPayload, sizeof(okPayload));
     return pr;
 }
 
 +(CPacketResponse*)timeoutResponse
 {
-    int8_t errorPayload[] = {127,0,0,0,0,0,0,0}; // repeated 0s to fake out queries
+    uint8_t errorPayload[] = {127,0,0,0,0,0,0,0}; // repeated 0s to fake out queries
     CPacketResponse *pr = [[CPacketResponse alloc] init:errorPayload :sizeof(errorPayload)];//(errorPayload, sizeof(errorPayload));
     return pr;
 }

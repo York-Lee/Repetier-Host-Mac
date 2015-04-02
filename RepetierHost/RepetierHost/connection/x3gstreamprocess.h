@@ -16,7 +16,7 @@
 #import "x3gstreamparser.h"
 #import "ORSSerialPort.h"
 #import "motherboardcommandcode.h"
-//#import "serial.h"
+#import "serial.h"
 //#include "../serial/include/serial.h"
 
 /*using std::string;
@@ -24,7 +24,7 @@ using std::exception;
 using std::vector;
 typedef QQueue<CPacketResponse> TQPacketResponse;*/
 
-CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder* const pb, int ms);
+CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder* const pb, int ms);
 
 typedef NS_ENUM(NSUInteger, BotBuildStat)
 {
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, BotBuildStat)
     volatile BotBuildStat m_botstate;
     CUserTimer *m_tmr1, *m_tmr2;
     //ORSSerialPort *m_com;//serial::Serial* m_com;
-    ORSSerialPort* m_com;
+    serial::Serial* m_com;
     CX3gStreamParser* m_x3gsp;
     //NSMutableString *receiveData;
     NSData *m_data;//QByteArray m_data;
@@ -64,25 +64,24 @@ typedef NS_ENUM(NSUInteger, BotBuildStat)
 }
 
 -(id)init;
--(id)init:(ORSSerialPort*) pCom :(CX3gStreamParser**) pParser;
--(void)setupinit:(ORSSerialPort*)pCom :(CX3gStreamParser**) pParser;
+-(id)init:(serial::Serial*) pCom :(CX3gStreamParser**) pParser;
+-(void)setupinit:(serial::Serial*)pCom :(CX3gStreamParser**) pParser;
 //~X3gStreamInterface();
 
--(void)initial:(ORSSerialPort*) pCom :(CX3gStreamParser*) pParser;
+-(void)initial:(serial::Serial*) pCom :(CX3gStreamParser*) pParser;
 -(void)setrunflag:(bool) brun;
 -(CPacketResponse*)runcommand_lock:(CPacketBuilder* const) pb :(int) ms;
 -(bool)startbuild;
 -(void)pausebuild;
 -(void)cancelbuild;
 -(void)resetbot;
--(void)run:(ORSSerialPort*) connection_com;
+-(void)run:(serial::Serial*) connection_com;
 -(void)usrtimerstart;
 -(void)usrtimerstop;
 -(bool)usrtimerellapse;
 -(BotBuildStat)updatebotstate:(int) retry;// = 10);
 -(int)readtoclear:(int) retry;// = 50);
 -(bool)isbotfinished;
--(NSString*)getbaudrate;
 
 /*signals:
     void setbotstat(int stat);

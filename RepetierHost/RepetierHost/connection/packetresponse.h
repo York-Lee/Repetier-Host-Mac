@@ -21,14 +21,14 @@ typedef NS_ENUM(NSUInteger, ResponseCode) {
 @interface CPacketResponse : NSObject {
     int m_rdpos;
     //int m_pllen;
-    //int8_t* m_payload;
+    //uint8_t* m_payload;
 }
 @property int m_pllen;
-@property int8_t* m_payload;
+@property uint8_t* m_payload;
 
 -(id)init;
 -(id)CPacketResponse:(NSData* const) payload;
--(id)init:(int8_t* const) payload :(int)len;
+-(id)init:(uint8_t* const) payload :(int)len;
 -(id)init:(CPacketResponse* const) s;
 //-(void)CPacketResponse& operator=(const CPacketResponse& s);
 //~CPacketResponse();

@@ -3,9 +3,9 @@
 @interface CIButtonCrc : NSObject
 //@property int m_crc;
 
--(void)CIButtonCrc;
+-(id)init;
 //~CIButtonCrc();
--(void)update:(int8_t) data;
+-(void)update:(uint8_t) data;
 -(uint8_t)getcrc;
 -(void)reset;
 @end

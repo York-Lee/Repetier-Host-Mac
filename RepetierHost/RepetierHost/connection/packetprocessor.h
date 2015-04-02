@@ -17,10 +17,10 @@ typedef NS_ENUM(NSUInteger, PacketState)
     
     PacketState m_packstat;
     int m_plidx;
-    int8_t m_targetcrc;
+    uint8_t m_targetcrc;
     CIButtonCrc* m_crc;
     int m_pllen;
-    int8_t* m_payload;
+    uint8_t* m_payload;
 }
 -(id)init;
 //~CPacketProcessor();

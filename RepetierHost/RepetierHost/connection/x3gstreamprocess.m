@@ -3,7 +3,7 @@
 //#include "tools.h"
 //#include <QDebug>
 
-CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * const pb, int ms )
+CPacketResponse* runcommandtool(serial::Serial* const pcom, CPacketBuilder * const pb, int ms )
 {
     if (!pb) {
         return [CPacketResponse timeoutResponse];
@@ -14,9 +14,9 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     if (!pcom) {
         return [CPacketResponse timeoutResponse];
     }
-    /*if (![pcom isOpen]) {
+    if (!pcom->isOpen()) {
         return [CPacketResponse timeoutResponse];
-    }*/
+    }
     /*if ( !pb || ms <= 0 || !pcom || ![pcom isOpen] )
         return [CPacketResponse timeoutResponse];*/
 
@@ -28,27 +28,11 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     [receivePortData setString:@""];
     ba1 = [pb getPacket];
 
-    /****Test****/
-    [pcom close];
-    serial::Serial serial_com;
-    serial::Timeout to = serial::Timeout::simpleTimeout(500);
-    std::string name = "/dev/tty.usbmodem1451";
-    serial_com.setPort(name);
-    serial_com.setBaudrate(115200);
-    serial_com.setTimeout(to);
-    serial_com.open();
-    /*Byte *data_bytes = (Byte*)[ba1 bytes];
-    uint8_t* uint_data;// = (uint8_t*)[ba1 bytes];
-    for (i = 0; i < [ba1 length]; i++) {
-        uint_data[i] = data_bytes[1];
-    }
-    NSLog(@"data_bytes:%lu, NSLen:%lu", sizeof(data_bytes), [ba1 length]);
-    len = (int)serial_com.write(uint_data, [ba1 length]);*/
-    len = (int)serial_com.write((uint8_t*)[ba1 bytes], [ba1 length]);
+    len = (int)pcom->write((uint8_t*)[ba1 bytes], [ba1 length]);
     NSLog(@"Sent length: %d", len);
     
     for ( i = accupos = 0; i < 2 && accupos < 2; i++ ) {
-        len = (int)serial_com.read(buff+accupos, 2-accupos);
+        len = (int)pcom->read(buff+accupos, 2-accupos);
         accupos += len;
         NSLog(@"len:%d, accupos:%d", len, accupos);
         for (int j = 0; j < accupos; j++) {
@@ -62,7 +46,7 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     
     // read payload and checksum
     for ( i = 0; i < ms && accupos < packlen; i++ ) {
-        len = (int)serial_com.read(buff+accupos, packlen-accupos);
+        len = (int)pcom->read(buff+accupos, packlen-accupos);
         accupos += len;
         for (int j = 0; j < accupos; j++) {
             NSLog(@"buff:%d", buff[j]);
@@ -71,13 +55,12 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     if ( packlen != accupos )
         return [CPacketResponse timeoutResponse];
     
+    NSLog(@"Process Byte");
     for ( i = 0; i < packlen; i++ ) {
         assert( false == complete );
         uint8_t u8 = (uint8_t)buff[i];
         complete = [pp processByte:u8];
     }
-    serial_com.close();
-    /****EndTest****/
     
     /*NSLog(@"%@", ba1);
     bool res = [pcom sendData:ba1];
@@ -125,7 +108,7 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
 
     for ( i = 0; i < packlen; i++ ) {
         assert( false == complete );
-        int8_t u8 = (int8_t)buff[i];
+        uint8_t u8 = (uint8_t)buff[i];
         complete = [pp processByte:u8];
     }*/
 
@@ -151,14 +134,14 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     m_brunning = false;
     m_biscomconn = false;
     m_botstate = BUILD_STAT_NONE;
-    m_com = NULL; m_x3gsp = NULL;
+    /*m_com = NULL;*/ m_x3gsp = NULL;
     //receivePortData = [[NSMutableString alloc] initWithString:@""];
     [m_tmr1 setinterval:500];
     [m_tmr2 setinterval:200];
     return self;
 }
 
--(id)init:(ORSSerialPort*)pCom :(CX3gStreamParser**) pParser
+-(id)init:(serial::Serial*)pCom :(CX3gStreamParser**) pParser
 {
     m_brunning = false;
     m_biscomconn = false;
@@ -174,7 +157,7 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     return self;
 }
 
--(void)setupinit:(ORSSerialPort*)pCom :(CX3gStreamParser**) pParser
+-(void)setupinit:(serial::Serial*)pCom :(CX3gStreamParser**) pParser
 {
     m_brunning = false;
     m_biscomconn = false;
@@ -188,18 +171,10 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     [m_tmr2 setinterval:200];
 }
 
-- (void)serialPort:(ORSSerialPort*)serialPort didReceiveData:(NSData *)data
-{
-    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    if ([string length] == 0) return;
-    [receivePortData appendString:string];
-    //[self.receivedDataTextView.textStorage.mutableString appendString:string];
-    //[self.receivedDataTextView setNeedsDisplay:YES];
-}
 
 //X3gStreamInterface::~X3gStreamInterface() {}
 
--(void)initial:(ORSSerialPort*) pCom :(CX3gStreamParser*) pParser
+-(void)initial:(serial::Serial*) pCom :(CX3gStreamParser*) pParser
 {
     assert( pCom && pParser && ![self isExecuting] );
     if ( m_x3gsp && [m_x3gsp isopen] ) {
@@ -210,10 +185,10 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     m_x3gsp = pParser;
 }
 
--(NSString*)getbaudrate
+/*-(NSString*)getbaudrate
 {
-    return (NSString*)m_com.baudRate;
-}
+    return (NSString*)m_com->baudRate;
+}*/
 
 -(void)setrunflag:(bool) brun
 {
@@ -232,11 +207,10 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
 -(bool)startbuild
 {
     NSLog(@"parser: %d", [m_x3gsp isopen]);
-    NSLog(@"baudRate:%@, isopen:%d", m_com.baudRate, [m_com isOpen]);
     //assert( ![self isExecuting] && m_botstate != BUILD_STAT_RUNNING && m_botstate != BUILD_STAT_CANNELLING );
     m_botstate = BUILD_STAT_NONE;
     //[self run];
-    [NSThread detachNewThreadSelector:@selector(run:) toTarget:self withObject:m_com];
+    [NSThread detachNewThreadSelector:@selector(run) toTarget:self withObject:nil];// withObject:m_com];
     return true;
 }
 
@@ -282,13 +256,12 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     m_botstate = BUILD_STAT_NONE;
 }
 
--(void)run:(ORSSerialPort*) connection_com
+-(void)run//:(serial::Serial*) connection_com
 {
     NSLog(@"Start Run");
     NSLog(@"%@", [m_x3gsp getfile]);
     [m_x3gsp open:[m_x3gsp getfile]];
-    NSLog(@"%@", connection_com.baudRate);
-    [connection_com open];
+    m_com->open();
     
     long execcnt = 0;
     bool botfull = false;
@@ -339,7 +312,7 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
                 }
 
                 botfull = false;
-                pr = runcommandtool(connection_com, pb, 10);
+                pr = runcommandtool(m_com, pb, 10);
                 ResponseCode rc = [pr getResponseCode];
                 switch ( rc ) {
                 case OK:
