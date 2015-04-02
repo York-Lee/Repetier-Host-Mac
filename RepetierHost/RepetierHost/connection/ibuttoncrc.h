@@ -6,6 +6,6 @@
 -(void)CIButtonCrc;
 //~CIButtonCrc();
 -(void)update:(int8_t) data;
--(int8_t)getcrc;
+-(uint8_t)getcrc;
 -(void)reset;
 @end

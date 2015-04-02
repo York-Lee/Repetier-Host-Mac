@@ -1,4 +1,5 @@
 #import "x3gstreamprocess.h"
+#import "serial.h"
 //#include "tools.h"
 //#include <QDebug>
 
@@ -13,24 +14,78 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     if (!pcom) {
         return [CPacketResponse timeoutResponse];
     }
-    if (![pcom isOpen]) {
+    /*if (![pcom isOpen]) {
         return [CPacketResponse timeoutResponse];
-    }
+    }*/
     /*if ( !pb || ms <= 0 || !pcom || ![pcom isOpen] )
         return [CPacketResponse timeoutResponse];*/
 
     int i, len, packlen, accupos;
     bool complete = false;
-    CPacketProcessor *pp;
+    CPacketProcessor *pp = [[CPacketProcessor alloc] init];
     NSData* ba1;
     uint8_t buff[100];
-
     [receivePortData setString:@""];
     ba1 = [pb getPacket];
-    [pcom sendData:ba1];//len = pcom->write((uint8_t*)[ba1 bytes], [ba1 length]);
+
+    /****Test****/
+    [pcom close];
+    serial::Serial serial_com;
+    serial::Timeout to = serial::Timeout::simpleTimeout(500);
+    std::string name = "/dev/tty.usbmodem1451";
+    serial_com.setPort(name);
+    serial_com.setBaudrate(115200);
+    serial_com.setTimeout(to);
+    serial_com.open();
+    /*Byte *data_bytes = (Byte*)[ba1 bytes];
+    uint8_t* uint_data;// = (uint8_t*)[ba1 bytes];
+    for (i = 0; i < [ba1 length]; i++) {
+        uint_data[i] = data_bytes[1];
+    }
+    NSLog(@"data_bytes:%lu, NSLen:%lu", sizeof(data_bytes), [ba1 length]);
+    len = (int)serial_com.write(uint_data, [ba1 length]);*/
+    len = (int)serial_com.write((uint8_t*)[ba1 bytes], [ba1 length]);
+    NSLog(@"Sent length: %d", len);
+    
+    for ( i = accupos = 0; i < 2 && accupos < 2; i++ ) {
+        len = (int)serial_com.read(buff+accupos, 2-accupos);
+        accupos += len;
+        NSLog(@"len:%d, accupos:%d", len, accupos);
+        for (int j = 0; j < accupos; j++) {
+            NSLog(@"buff:%d", buff[j]);
+        }
+    }
+    if ( 2 != accupos )
+        return [CPacketResponse timeoutResponse];
+    
+    packlen = buff[1] + 3;
+    
+    // read payload and checksum
+    for ( i = 0; i < ms && accupos < packlen; i++ ) {
+        len = (int)serial_com.read(buff+accupos, packlen-accupos);
+        accupos += len;
+        for (int j = 0; j < accupos; j++) {
+            NSLog(@"buff:%d", buff[j]);
+        }
+    }
+    if ( packlen != accupos )
+        return [CPacketResponse timeoutResponse];
+    
+    for ( i = 0; i < packlen; i++ ) {
+        assert( false == complete );
+        uint8_t u8 = (uint8_t)buff[i];
+        complete = [pp processByte:u8];
+    }
+    serial_com.close();
+    /****EndTest****/
+    
+    /*NSLog(@"%@", ba1);
+    bool res = [pcom sendData:ba1];
+    NSLog(@"Send Res: %d", res);
     //assert( len == [ba1 length] );
 
     [NSThread sleepForTimeInterval:1];
+    NSLog(@"receivePortData: %@", receivePortData);
     if ([receivePortData length] < 2)
     {
         return [CPacketResponse timeoutResponse];
@@ -48,7 +103,8 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
         //len = pcom->read(buff+accupos, packlen-accupos);
         accupos += len;
     }
-    receivePortData = [NSMutableString stringWithString:[receivePortData substringFromIndex:accupos]];// setString:@""];
+    receivePortData = [NSMutableString stringWithString:[receivePortData substringFromIndex:accupos]];*/
+    
     // read first two bytes:<0xd5 payloadlength>
     /*for ( i = accupos = 0; i < 2 && accupos < 2; i++ ) {
         len = pcom->read(buff+accupos, 2-accupos);
@@ -114,6 +170,7 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
     m_x3gsp = *pParser;
     [m_tmr1 setinterval:500];
     [m_tmr2 setinterval:200];
+    receivePortData = [[NSMutableString alloc] initWithString:@""];
     return self;
 }
 
@@ -252,7 +309,7 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
 
     while ( m_brunning /*&& !m_cancelbuild*/ )
     {
-        NSLog(@"Looping Status: %lu, IterationNum: %d", (unsigned long)m_botstate, execcnt);
+        NSLog(@"Looping Status: %lu, IterationNum: %ld", m_botstate, execcnt);
         // lock all switch-case
         // structure to avoid sending command
         // just after cancel command from main thread.
@@ -303,7 +360,7 @@ CPacketResponse* runcommandtool(ORSSerialPort* const pcom, CPacketBuilder * cons
 
                 default:
                     // TODO: on exception, we should stop bot
-                    NSLog(@"ERROR: response code:%lu", (unsigned long)rc);
+                    NSLog(@"ERROR: response code:%lu", rc);
                     [pb dealloc];/*delete pb;*/ pb = NULL;
                     execcnt++;
                     break;

@@ -45,7 +45,7 @@
     return pr;
 }
 
--(BOOL)processByte:(int8_t) b
+-(BOOL)processByte:(uint8_t) b
 {
     /*if ( b >= 32 && b <= 127 ) {
         qDebug("IN: Processing byte %02x(%c)", b, b);

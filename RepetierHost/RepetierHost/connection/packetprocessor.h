@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, PacketState)
 //~CPacketProcessor();
 -(void)reset;
 -(CPacketResponse*)getResponse;
--(BOOL)processByte:(int8_t) b;
+-(BOOL)processByte:(uint8_t) b;
 
 @end
 

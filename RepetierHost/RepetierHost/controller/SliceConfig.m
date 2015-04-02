@@ -42,18 +42,13 @@
 }
 
 - (IBAction)sliceButtonHit:(id)sender {
-    [self SelectMachineType];
+    /*[self SelectMachineType];
     NSLog(@"Machine done");
     [self Select_Extruder];
     NSLog(@"truder done");
-    [app->composer generateGCode:nil];
-}
-
-void runSystemCommand(NSString *cmd)
-{
-    [[NSTask launchedTaskWithLaunchPath:@"/bin/sh"
-                              arguments:[NSArray arrayWithObjects:@"-c", cmd, nil]]
-     waitUntilExit];
+    [app->composer generateGCode:nil];*/
+    
+    [self GcodeToGPX:@"/Users/liyingkai/Downloads/GPX-master/gpx" :@"/Users/liyingkai/Desktop/hulk.gcode"];
 }
 
 -(void)SelectMachineType
@@ -323,6 +318,13 @@ void runSystemCommand(NSString *cmd)
     
     RLog.info("Slic3r command:" + exe + " " + builder.ToString());*/
     return true;
+}
+
+-(void)GcodeToGPX:(NSString*) path :(NSString*) file
+{
+    NSLog(@"GcodeToGPX Start");
+    NSArray *args = [NSArray arrayWithObjects:@"-c", [NSString stringWithFormat:@"%@ -gpv -m r1d %@", path, file], nil];
+    [[NSTask launchedTaskWithLaunchPath:@"/bin/sh" arguments:args] waitUntilExit];
 }
 
 - (IBAction)killSliceButtonHit:(id)sender {

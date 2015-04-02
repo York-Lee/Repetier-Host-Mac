@@ -45,7 +45,7 @@
     [self add8:buff[2]]; [self add8:buff[3]];
 }
 
--(int)addString:(NSString*) str:(int) maxSize
+-(int)addString:(NSString*) str :(int) maxSize
 {
     int i = 0, size = maxSize;
     while ( size > 0 && i < [str length] ) {
@@ -65,6 +65,9 @@
     Byte* ba = (Byte*)malloc(m_idx+1); //ba.resize(m_idx+1);
     memcpy(ba, m_data, m_idx+1);
     NSData * ba_data = [[NSData alloc] initWithBytes:ba length:m_idx+1];
+    for (int i = 0; i < m_idx + 1; i++) {
+        NSLog(@"%d", ba[i]);
+    }
     return ba_data;
 }
 

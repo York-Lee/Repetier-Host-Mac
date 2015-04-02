@@ -12,7 +12,7 @@
 
 -(id) init
 {
-    ORSSerialPort *serialPort = [ORSSerialPort serialPortWithPath:@"/dev/cu.usbmodem1411"];
+    ORSSerialPort *serialPort = [ORSSerialPort serialPortWithPath:@"/dev/tty.usbmodem1451"];
     //NSData* someData = [[NSData alloc] init];
     serialPort.baudRate = @115200;
     [serialPort open];

@@ -610,7 +610,7 @@
 }
 /** Build Slic3r configuration file, store stl file and start Slic3r */
 -(void)sliceSlic3r:(NSString*)file {
-    NSLog(file);
+    NSLog(@"%@", file);
     if(slic3rExtSlice!=nil) {
         if(slic3rExtSlice->running) {
             return;
@@ -676,8 +676,9 @@
     if([Slicer fileExists:slic3rExtOut]) {
         [[NSFileManager defaultManager] removeItemAtPath:slic3rExtOut error:nil];
     }
-    arr = [NSArray arrayWithObjects:@"--load",config,@"--print-center",
-           [NSString stringWithFormat:@"%d,%d",(int)centerx,(int)centery],@"-o",slic3rExtOut,file,nil];
+    /*arr = [NSArray arrayWithObjects:@"--load",config,@"--print-center",
+           [NSString stringWithFormat:@"%d,%d",(int)centerx,(int)centery],@"-o",slic3rExtOut,file,nil];*/
+    arr = [NSArray arrayWithObjects:@"--load",config,@"--print-center", @"0,0", @"-o",slic3rExtOut,file,nil];
     slic3rExtSlice = [[RHTask alloc] initProgram:exe args:arr logPrefix:@"<Slic3r> "];
     [app->rhslicer.killButton setEnabled:YES];
 }
